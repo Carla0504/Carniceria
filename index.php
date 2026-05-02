@@ -13,15 +13,13 @@ if (!isset($_SESSION['user'])) {
   <meta charset="UTF-8">
   <title>Carnicería - Inicio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="public/css/index.css">
 </head>
 
 <body>
 
 <nav class="navbar">
-  <div class="logo">Carnicería Alex</div>
+  <div class="logo">Nombre Carnicería</div>
 
   <ul class="menu">
     <li>
@@ -48,8 +46,8 @@ if (!isset($_SESSION['user'])) {
 </nav>
 
 <div class="content">
-  <h1>Bienvenido a la carnicería 🥩</h1>
-  <p>Selecciona una sección del menú.</p>
+  <h1>Bienvenido a la carnicería</h1>
+  <p>Selecciona una sección del menú</p>
 </div>
 
 </body>
