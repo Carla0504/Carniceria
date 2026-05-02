@@ -25,8 +25,6 @@
       <label for="password">Contraseña</label>
       <div class="input-wrap">
         <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
-        <button type="button" class="toggle-pass" id="toggle-pass" title="Mostrar contraseña">
-        </button>
       </div>
     </div>
 
