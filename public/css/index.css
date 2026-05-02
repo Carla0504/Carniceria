@@ -1,0 +1,84 @@
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background: #111827;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.menu a:hover {
+  color: #a5b4fc;
+}
+
+/* SUBMENÚ */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background: white;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 6px;
+  min-width: 160px;
+}
+
+.submenu li {
+  padding: 0.4rem 0;
+}
+
+.submenu a {
+  color: #111827;
+}
+
+.menu li:hover .submenu {
+  display: block;
+}
+
+/* CONTENIDO */
+.content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.content h1 {
+  margin-bottom: 1rem;
+}
+
+/* BOTÓN LOGOUT */
+.logout {
+  background: #ef4444;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background: #dc2626;
+}
