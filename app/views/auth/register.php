@@ -11,9 +11,7 @@
   <h1>Crear cuenta</h1>
   <p class="subtitle">Regístrate para empezar</p>
 
-  <form action="/register" method="POST">
-
-    <div class="field">
+  <form action="../../controllers/registerController.php" method="POST">    <div class="field">
       <label for="name">Nombre completo</label>
       <div class="input-wrap">
         <input type="text" id="name" name="name" placeholder="Juan García" autocomplete="name" required>
@@ -51,9 +49,8 @@
 
   </form>
 
-  <p class="signup">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+  <p class="signup">¿Ya tienes cuenta? <a href="./login.php">Inicia sesión</a></p>
 </div>
 
-<script src="/public/js/auth.js"></script>
-</body>
+<script src="../../../public/js/auth.js"></script></body>
 </html>

@@ -11,9 +11,7 @@
   <h1>Bienvenido de nuevo</h1>
   <p class="subtitle">Inicia sesión en tu cuenta</p>
 
-  <form action="/login" method="POST">
-
-    <div class="field">
+  <form action="../../controllers/loginController.php" method="POST">    <div class="field">
       <label for="email">Correo electrónico</label>
       <div class="input-wrap">
         <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
@@ -38,9 +36,9 @@
 
   </form>
 
-  <p class="signup">¿No tienes cuenta? <a href="/register">Regístrate gratis</a></p>
+  <p class="signup">¿No tienes cuenta? <a href="./register.php">Regístrate gratis</a></p>
 </div>
 
-<script src="/public/js/auth.js"></script>
+<script src="../../../public/js/auth.js"></script>
 </body>
 </html>
