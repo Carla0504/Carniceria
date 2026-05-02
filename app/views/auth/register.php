@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear cuenta</title>
-  <link rel="stylesheet" href="/public/css/auth.css">
-</head>
+  <link rel="stylesheet" href="../../../public/css/auth.css"></head>
 <body>
 
 <div class="card">
