@@ -48,7 +48,7 @@ CREATE TABLE carrito_items (
     cantidad TINYINT UNSIGNED NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_usuario_producto (id_usuario, id_producto),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)  ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
 );
 
@@ -59,4 +59,5 @@ INSERT INTO secciones (nombre, slug, descripcion, orden) VALUES
 ('Conservas', 'conservas', 'Conservas y productos en lata', 4);
 
 INSERT INTO usuarios (nombre, email, password, rol) VALUES 
-('Administrador', 'admin@ladehesa.es', '$2b$10$kDYN/LFcHExN925KRxcbHO2drA8Xi7cZotmJnFVLytGV7OP2elcNC', 'admin');
+('Administrador', 'admin@ladehesa.es', '$2b$10$kDYN/LFcHExN925KRxcbHO2drA8Xi7cZotmJnFVLytGV7OP2elcNC', 'admin'),
+('prueba', 'prueba@gmail.com', '$2b$10$Yakq5YNFN6r9IDRtFhNUlumfiqjf/dOS0BClfCTkkCv0hCWt25AyS', 'cliente');
