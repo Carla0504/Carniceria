@@ -10,7 +10,7 @@ $titulo = 'La Dehesa — Imágenes';
 require __DIR__ . '/../../../app/views/layout/header.php';
 echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/galeria.css">';
 
-$imagenes = glob(__DIR__ . '/../../../public/img/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
+$imagenes = glob(__DIR__ . '/../../../public/img/galeria/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
 ?>
 
 <div class="content">
@@ -19,7 +19,7 @@ $imagenes = glob(__DIR__ . '/../../../public/img/*.{jpg,jpeg,png,webp}', GLOB_BR
         <?php foreach ($imagenes as $ruta): ?>
             <?php $nombre = basename($ruta); ?>
             <div class="galeria-item">
-                <img src="/Carniceria/crm/public/img/<?= htmlspecialchars($nombre) ?>" alt="Imagen de La Dehesa">
+                <img src="/Carniceria/crm/public/img/galeria/<?= htmlspecialchars($nombre) ?>" alt="Imagen de La Dehesa">
             </div>
         <?php endforeach; ?>
     </div>
