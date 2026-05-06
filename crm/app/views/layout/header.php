@@ -11,6 +11,10 @@
 <nav class="navbar">
   <div class="logo">La Dehesa</div>
 
+  <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+
   <ul class="menu">
     <li>
       <a href="/Carniceria/crm/index.php">Inicio</a>

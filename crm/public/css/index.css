@@ -7,6 +7,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .logo {
@@ -18,6 +20,9 @@
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .menu li {
@@ -45,6 +50,7 @@
   padding: 0.5rem;
   border-radius: 6px;
   min-width: 160px;
+  z-index: 100;
 }
 
 .submenu li {
@@ -59,10 +65,31 @@
   display: block;
 }
 
+/* HAMBURGUESA */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+}
+
 /* CONTENIDO */
 .content {
   padding: 2rem;
   text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .content h1 {
@@ -106,4 +133,61 @@
 
 .logout:hover {
   background: #dc2626;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #1f2937;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    z-index: 99;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li {
+    width: 100%;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #374151;
+  }
+
+  .menu li:last-child {
+    border-bottom: none;
+  }
+
+  .submenu {
+    position: static;
+    background: #374151;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    margin-top: 0.5rem;
+    min-width: unset;
+  }
+
+  .submenu a {
+    color: #d1d5db;
+  }
+
+  .content {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer {
+    padding: 1.25rem 1rem;
+  }
 }
