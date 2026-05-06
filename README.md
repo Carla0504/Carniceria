@@ -4,7 +4,6 @@ Aplicación web desarrollada como Trabajo de Fin de Grado del ciclo **DAW (Desar
 
 El proyecto consiste en la web oficial de **La Dehesa**, carnicería ubicada en la **Calle Seis de Diciembre, Aravaca (Madrid)**. Además de presentar el negocio, la aplicación permite a los clientes consultar el catálogo de productos y calcular el importe de su selección, y al administrador gestionar todo el contenido desde un panel privado.
 
----
 
 ## Funcionalidades principales
 
@@ -43,7 +42,6 @@ Productos organizados por sección, cada uno con nombre, descripción, precio y 
 ### Idioma
 - Selector de idioma para cambiar toda la interfaz entre **español** e **inglés**.
 
----
 
 ## Tecnologías utilizadas
 
@@ -55,7 +53,7 @@ Productos organizados por sección, cada uno con nombre, descripción, precio y 
 | Control de versiones | Git / GitHub |
 | Despliegue | Docker |
 
----
+
 
 ## Estructura del proyecto
 
@@ -72,7 +70,7 @@ Carniceria/
 └── README.md
 ```
 
----
+
 
 ## Instalación local
 
@@ -84,7 +82,7 @@ Carniceria/
 3. Configura las credenciales de BD en el archivo de configuración.
 4. Lanza el proyecto con un servidor local (XAMPP, Laragon, etc.) apuntando a la carpeta `Carniceria/`.
 
----
+
 
 ## Estado del proyecto
 
