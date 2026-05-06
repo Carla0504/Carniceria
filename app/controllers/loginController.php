@@ -1,22 +1,33 @@
 <?php
 session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Carniceria/config/db.php';
 
-// Recoger datos
-$email = $_POST['email'] ?? '';
+$email    = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
-// 👉 Aquí tu lógica (ejemplo simple)
-if ($email === "admin@admin.com" && $password === "12345678") {
-
-    $_SESSION['user'] = [
-        'name' => 'Admin',
-        'email' => $email
-    ];
-
-    header("Location: ../../../index.php");
+if ($email === '' || $password === '') {
+    header("Location: /Carniceria/app/views/auth/login.php?error=campos");
     exit();
 }
 
-// Si falla → volver al login
-header("Location: ../views/auth/login.php");
+$stmt = $pdo->prepare("SELECT id, nombre, email, password, rol FROM usuarios WHERE email = ? LIMIT 1");
+$stmt->execute([$email]);
+$usuario = $stmt->fetch();
+
+// Los hashes de la BD son $2b$ (bcrypt de Node); PHP usa $2y$, son equivalentes
+$hash = $usuario ? str_replace('$2b$', '$2y$', $usuario['password']) : '';
+
+if (!$usuario || !password_verify($password, $hash)) {
+    header("Location: /Carniceria/app/views/auth/login.php?error=credenciales");
+    exit();
+}
+
+$_SESSION['user'] = [
+    'id'     => $usuario['id'],
+    'nombre' => $usuario['nombre'],
+    'email'  => $usuario['email'],
+    'rol'    => $usuario['rol'],
+];
+
+header("Location: /Carniceria/index.php");
 exit();
