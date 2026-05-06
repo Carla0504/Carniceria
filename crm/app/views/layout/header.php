@@ -28,7 +28,7 @@
     <li><a href="#">Pollería</a></li>
     <li><a href="#">Conservas</a></li>
     <li><a href="#">Promociones</a></li>
-    <li><a href="#">Imágenes</a></li>
+    <li><a href="/Carniceria/crm/app/views/galeria/index.php">Imágenes</a></li>
     <li><a href="#">Contacto</a></li>
 
     <?php if (isset($_SESSION['user'])): ?>
