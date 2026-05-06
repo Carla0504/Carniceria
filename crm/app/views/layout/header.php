@@ -11,7 +11,7 @@
 <nav class="navbar">
   <div class="logo">La Dehesa</div>
 
-  <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">
+  <button class="menu-toggle" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 

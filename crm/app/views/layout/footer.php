@@ -9,5 +9,6 @@
   </div>
 </footer>
 
+<script src="/Carniceria/crm/public/js/main.js"></script>
 </body>
 </html>
