@@ -11,6 +11,12 @@
   <h1>Bienvenido de nuevo</h1>
   <p class="subtitle">Inicia sesión en tu cuenta</p>
 
+  <?php if (!empty($_GET['error'])): ?>
+    <p class="error-msg">
+      <?= $_GET['error'] === 'campos' ? 'Rellena todos los campos.' : 'Correo o contraseña incorrectos.' ?>
+    </p>
+  <?php endif; ?>
+
   <form action="../../controllers/loginController.php" method="POST">    <div class="field">
       <label for="email">Correo electrónico</label>
       <div class="input-wrap">
