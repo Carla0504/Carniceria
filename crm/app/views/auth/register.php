@@ -11,6 +11,18 @@
   <h1>Crear cuenta</h1>
   <p class="subtitle">Regístrate para empezar</p>
 
+  <?php if (!empty($_GET['error'])): ?>
+    <p class="error-msg">
+      <?php $e = $_GET['error']; echo match($e) {
+        'campos' => 'Rellena todos los campos.',
+        'passwords' => 'Las contraseñas no coinciden.',
+        'longitud' => 'La contraseña debe tener al menos 8 caracteres.',
+        'existe' => 'Este correo ya está registrado.',
+        default => 'Ha ocurrido un error. Inténtalo de nuevo.'
+      }; ?>
+    </p>
+  <?php endif; ?>
+
   <form action="../../controllers/registerController.php" method="POST">    <div class="field">
       <label for="name">Nombre completo</label>
       <div class="input-wrap">
