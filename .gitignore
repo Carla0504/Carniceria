@@ -1,0 +1,15 @@
+# Documentación interna del TFG
+Orientación para la redacción proyectos fin de ciclo.pdf
+Proyecto_DAW_2025_26_Informacion_para_alumnos.pdf
+rubrica de evaluación del proyecto intermodular.png
+
+# Dependencias
+/vendor/
+
+# Variables de entorno
+.env
+.env.*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
