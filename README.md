@@ -43,6 +43,19 @@ Productos organizados por sección, cada uno con nombre, descripción, precio y 
 - Selector de idioma para cambiar toda la interfaz entre **español** e **inglés**.
 
 
+## Dispositivos compatibles
+
+La web está diseñada para adaptarse a los siguientes dispositivos:
+
+| Dispositivo | Resolución aproximada | Soporte |
+|---|---|---|
+| Móvil | < 768px | ✅ Menú hamburguesa, layout en columna |
+| Tablet | 768px – 1024px | ✅ Layout adaptado |
+| Escritorio | > 1024px | ✅ Navbar horizontal completo |
+
+El diseño es **responsive** mediante CSS con media queries, sin dependencia de frameworks externos.
+
+
 ## Tecnologías utilizadas
 
 | Capa | Tecnología |
