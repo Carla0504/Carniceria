@@ -1,4 +1,11 @@
 /* Estilos globales cargados en todas las páginas a través de header.php */
+/* RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* NAVBAR */
 .navbar {
   width: 100%;
