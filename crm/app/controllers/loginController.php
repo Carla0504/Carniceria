@@ -1,12 +1,12 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Carniceria/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Carniceria/crm/config/db.php';
 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
 if ($email === '' || $password === '') {
-    header("Location: /Carniceria/app/views/auth/login.php?error=campos");
+    header("Location: /Carniceria/crm/app/views/auth/login.php?error=campos");
     exit();
 }
 
@@ -18,7 +18,7 @@ $usuario = $stmt->fetch();
 $hash = $usuario ? str_replace('$2b$', '$2y$', $usuario['password']) : '';
 
 if (!$usuario || !password_verify($password, $hash)) {
-    header("Location: /Carniceria/app/views/auth/login.php?error=credenciales");
+    header("Location: /Carniceria/crm/app/views/auth/login.php?error=credenciales");
     exit();
 }
 
@@ -29,5 +29,5 @@ $_SESSION['user'] = [
     'rol'    => $usuario['rol'],
 ];
 
-header("Location: /Carniceria/index.php");
+header("Location: /Carniceria/crm/index.php");
 exit();

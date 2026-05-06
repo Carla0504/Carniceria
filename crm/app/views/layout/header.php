@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $titulo ?? 'La Dehesa' ?></title>
-  <link rel="stylesheet" href="/Carniceria/public/css/index.css">
+  <link rel="stylesheet" href="/Carniceria/crm/public/css/index.css">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 
   <ul class="menu">
     <li>
-      <a href="/Carniceria/index.php">Inicio</a>
+      <a href="/Carniceria/crm/index.php">Inicio</a>
       <ul class="submenu">
         <li><a href="#">Sobre nosotros</a></li>
         <li><a href="#">Localización</a></li>
@@ -35,12 +35,12 @@
       <?php endif; ?>
 
       <li>
-        <form action="/Carniceria/app/controllers/logoutController.php" method="POST" style="display:inline;">
+        <form action="/Carniceria/crm/app/controllers/logoutController.php" method="POST" style="display:inline;">
           <button class="logout">Salir</button>
         </form>
       </li>
     <?php else: ?>
-      <li><a href="/Carniceria/app/views/auth/login.php">Iniciar sesión</a></li>
+      <li><a href="/Carniceria/crm/app/views/auth/login.php">Iniciar sesión</a></li>
     <?php endif; ?>
 
     <li>
