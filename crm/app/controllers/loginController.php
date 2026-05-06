@@ -23,10 +23,10 @@ if (!$usuario || !password_verify($password, $hash)) {
 }
 
 $_SESSION['user'] = [
-    'id'     => $usuario['id'],
+    'id' => $usuario['id'],
     'nombre' => $usuario['nombre'],
-    'email'  => $usuario['email'],
-    'rol'    => $usuario['rol'],
+    'email' => $usuario['email'],
+    'rol' => $usuario['rol'],
 ];
 
 header("Location: /Carniceria/crm/index.php");
