@@ -1,6 +1,12 @@
 CREATE DATABASE IF NOT EXISTS la_dehesa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE la_dehesa;
 
+DROP TABLE IF EXISTS carrito_items;
+DROP TABLE IF EXISTS promociones;
+DROP TABLE IF EXISTS productos;
+DROP TABLE IF EXISTS secciones;
+DROP TABLE IF EXISTS usuarios;
+
 CREATE TABLE usuarios (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -40,31 +46,31 @@ CREATE TABLE productos (
     FOREIGN KEY (id_seccion) REFERENCES secciones(id) ON DELETE CASCADE
 );
 
-INSERT INTO productos (id_seccion, nombre, descripcion, precio) VALUES
+INSERT INTO productos (id_seccion, nombre, descripcion, precio, foto) VALUES
 -- Carnicería
-(1, 'Entrecot de ternera', 'Corte jugoso de ternera nacional, ideal para plancha o barbacoa.', 18.90),
-(1, 'Chuletas de cerdo', 'Chuletas de cerdo ibérico con hueso, perfectas para asar.', 7.50),
-(1, 'Solomillo de cerdo', 'Pieza tierna y magra de cerdo, ideal para medallones.', 12.00),
-(1, 'Costillas de ternera', 'Costillas de ternera para horno o barbacoa, muy jugosas.', 9.80),
-(1, 'Hamburguesas artesanas', 'Hamburguesas elaboradas a mano con carne de ternera 100%.', 8.40),
+(1, 'Entrecot de ternera', 'Corte jugoso de ternera nacional, ideal para plancha o barbacoa.', 18.90, NULL),
+(1, 'Chuletas de cerdo', 'Chuletas de cerdo ibérico con hueso, perfectas para asar.', 7.50, NULL),
+(1, 'Solomillo de cerdo', 'Pieza tierna y magra de cerdo, ideal para medallones.', 12.00, NULL),
+(1, 'Costillas de ternera', 'Costillas de ternera para horno o barbacoa, muy jugosas.', 9.80, NULL),
+(1, 'Hamburguesas artesanas', 'Hamburguesas elaboradas a mano con carne de ternera 100%.', 8.40, NULL),
 -- Charcutería
-(2, 'Jamón ibérico de bellota', 'Jamón ibérico de bellota curado 36 meses, sabor intenso.', 65.00),
-(2, 'Lomo embuchado', 'Lomo de cerdo ibérico adobado y embutido artesanalmente.', 22.50),
-(2, 'Chorizo extra', 'Chorizo curado con pimentón de la Vera, sabor ahumado.', 11.00),
-(2, 'Salchichón ibérico', 'Salchichón elaborado con carnes selectas y especias naturales.', 13.50),
-(2, 'Morcilla de Burgos', 'Morcilla tradicional con arroz y cebolla, receta artesana.', 6.90),
+(2, 'Jamón ibérico de bellota', 'Jamón ibérico de bellota curado 36 meses, sabor intenso.', 65.00, 'jamon-iberico-bellota.png'),
+(2, 'Lomo embuchado', 'Lomo de cerdo ibérico adobado y embutido artesanalmente.', 22.50, 'lomo_embuchado.png'),
+(2, 'Chorizo extra', 'Chorizo curado con pimentón de la Vera, sabor ahumado.', 11.00, 'chorizo extra.png'),
+(2, 'Salchichón ibérico', 'Salchichón elaborado con carnes selectas y especias naturales.', 13.50, NULL),
+(2, 'Morcilla de Burgos', 'Morcilla tradicional con arroz y cebolla, receta artesana.', 6.90, NULL),
 -- Pollería
-(3, 'Pollo entero', 'Pollo fresco de granja, criado en libertad. Peso aproximado 1,8 kg.', 5.90),
-(3, 'Pechugas de pollo', 'Pechugas fileteadas listas para cocinar, sin piel ni hueso.', 7.20),
-(3, 'Muslos de pollo', 'Muslos con contramuslo, ideales para horno o guiso.', 4.50),
-(3, 'Pavo en filetes', 'Filetes de pavo finos, bajos en grasa y muy versátiles.', 8.00),
-(3, 'Alitas de pollo', 'Alitas frescas perfectas para asar o preparar en salsa.', 3.90),
+(3, 'Pollo entero', 'Pollo fresco de granja, criado en libertad. Peso aproximado 1,8 kg.', 5.90, NULL),
+(3, 'Pechugas de pollo', 'Pechugas fileteadas listas para cocinar, sin piel ni hueso.', 7.20, NULL),
+(3, 'Muslos de pollo', 'Muslos con contramuslo, ideales para horno o guiso.', 4.50, NULL),
+(3, 'Pavo en filetes', 'Filetes de pavo finos, bajos en grasa y muy versátiles.', 8.00, NULL),
+(3, 'Alitas de pollo', 'Alitas frescas perfectas para asar o preparar en salsa.', 3.90, NULL),
 -- Conservas
-(4, 'Paté de campaña', 'Paté artesano elaborado con hígado de cerdo y especias.', 3.50),
-(4, 'Morcilla en conserva', 'Morcilla de calidad envasada al vacío para mayor durabilidad.', 4.20),
-(4, 'Lomo en manteca', 'Lomo de cerdo ibérico conservado en manteca colorá tradicional.', 6.80),
-(4, 'Chicharrones', 'Chicharrones de cerdo crujientes, elaborados de forma artesanal.', 5.10),
-(4, 'Chistorra en aceite', 'Chistorra navarra en conserva de aceite de oliva virgen extra.', 4.75);
+(4, 'Paté de campaña', 'Paté artesano elaborado con hígado de cerdo y especias.', 3.50, NULL),
+(4, 'Morcilla en conserva', 'Morcilla de calidad envasada al vacío para mayor durabilidad.', 4.20, NULL),
+(4, 'Lomo en manteca', 'Lomo de cerdo ibérico conservado en manteca colorá tradicional.', 6.80, NULL),
+(4, 'Chicharrones', 'Chicharrones de cerdo crujientes, elaborados de forma artesanal.', 5.10, NULL),
+(4, 'Chistorra en aceite', 'Chistorra navarra en conserva de aceite de oliva virgen extra.', 4.75, NULL);
 
 CREATE TABLE promociones (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
