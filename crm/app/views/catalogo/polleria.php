@@ -23,10 +23,16 @@ echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">';
     <h1>Pollería</h1>
 </div>
 
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
+<div class="admin-toolbar">
+    <button class="btn-admin-add" onclick="abrirModalCrear()">+ Añadir producto</button>
+</div>
+<?php endif; ?>
+
 <div class="catalogo-grid">
     <?php foreach ($productos as $p): ?>
         <?php $enPromo = !is_null($p['precio_promocional']); ?>
-        <div class="producto-card">
+        <div class="producto-card" id="card-<?= $p['id'] ?>">
             <div class="producto-foto">
                 <?php if ($p['foto']): ?>
                     <img src="/Carniceria/crm/public/img/productos/polleria/<?= htmlspecialchars($p['foto']) ?>"
@@ -53,9 +59,19 @@ echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">';
                         data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
                     Añadir al carrito
                 </button>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
+                <div class="admin-card-actions">
+                    <button class="btn-admin-edit" onclick="abrirModalEditar(<?= $p['id'] ?>)">Editar</button>
+                    <button class="btn-admin-delete"
+                            onclick="eliminarProducto(<?= $p['id'] ?>, document.getElementById('card-<?= $p['id'] ?>'))">
+                        Eliminar
+                    </button>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
 
+<?php require __DIR__ . '/../layout/formulario.php'; ?>
 <?php require __DIR__ . '/../layout/footer.php'; ?>
