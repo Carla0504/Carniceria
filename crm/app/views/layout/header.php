@@ -35,10 +35,6 @@
     <?php if (isset($_SESSION['user'])): ?>
       <li><a href="#">🛒 Carrito</a></li>
 
-      <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
-        <li><a href="#">Panel Admin</a></li>
-      <?php endif; ?>
-
       <li>
         <form action="/Carniceria/crm/app/controllers/logoutController.php" method="POST" style="display:inline;">
           <button class="logout">Salir</button>
