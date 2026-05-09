@@ -25,11 +25,10 @@
         <li><a href="#">Localización</a></li>
       </ul>
     </li>
-    <li><a href="#">Carnicería</a></li>
-    <li><a href="#">Charcutería</a></li>
-    <li><a href="#">Pollería</a></li>
-    <li><a href="#">Conservas</a></li>
-    <li><a href="#">Promociones</a></li>
+    <li><a href="/Carniceria/crm/app/views/catalogo/carniceria.php">Carnicería</a></li>
+    <li><a href="/Carniceria/crm/app/views/catalogo/charcuteria.php">Charcutería</a></li>
+    <li><a href="/Carniceria/crm/app/views/catalogo/polleria.php">Pollería</a></li>
+    <li><a href="/Carniceria/crm/app/views/catalogo/conservas.php">Conservas</a></li>
     <li><a href="/Carniceria/crm/app/views/galeria/index.php">Imágenes</a></li>
     <li><a href="#">Contacto</a></li>
 
