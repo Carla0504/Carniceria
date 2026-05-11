@@ -23,25 +23,25 @@ require __DIR__ . '/app/views/layout/header.php';
   <p class="secciones-tag">Nuestras secciones</p>
   <h2>Lo que encontrarás</h2>
   <div class="secciones-grid">
-    <a href="#" class="seccion-card">
+    <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="seccion-card">
       <div class="seccion-icon">🥩</div>
       <h3>Carnicería</h3>
       <p>Ternera, cerdo y cordero de primera calidad, cortado al momento.</p>
       <span class="seccion-link">Ver productos →</span>
     </a>
-    <a href="#" class="seccion-card">
+    <a href="/Carniceria/crm/app/views/catalogo/charcuteria.php" class="seccion-card">
       <div class="seccion-icon">🍖</div>
       <h3>Charcutería</h3>
       <p>Jamones ibéricos, embutidos y productos curados artesanos.</p>
       <span class="seccion-link">Ver productos →</span>
     </a>
-    <a href="#" class="seccion-card">
+    <a href="/Carniceria/crm/app/views/catalogo/polleria.php" class="seccion-card">
       <div class="seccion-icon">🍗</div>
       <h3>Pollería</h3>
       <p>Pollo, pavo y otras aves frescas de granja, criadas en libertad.</p>
       <span class="seccion-link">Ver productos →</span>
     </a>
-    <a href="#" class="seccion-card">
+    <a href="/Carniceria/crm/app/views/catalogo/conservas.php" class="seccion-card">
       <div class="seccion-icon">🥫</div>
       <h3>Conservas</h3>
       <p>Patés, embutidos en conserva y productos tradicionales de calidad.</p>
