@@ -33,7 +33,7 @@
     <li><a href="#">Contacto</a></li>
 
     <?php if (isset($_SESSION['user'])): ?>
-      <li><a href="#">🛒 Carrito</a></li>
+      <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
 
       <li>
         <form action="/Carniceria/crm/app/controllers/logoutController.php" method="POST" style="display:inline;">
@@ -49,3 +49,6 @@
     </li>
   </ul>
 </nav>
+<?php if (isset($_SESSION['user'])): ?>
+<script src="/Carniceria/crm/public/js/carrito.js"></script>
+<?php endif; ?>
