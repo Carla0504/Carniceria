@@ -1,10 +1,5 @@
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
 <link rel="stylesheet" href="/Carniceria/crm/public/css/admin.css">
-<script>
-    window.SECCION_ID = <?= (int)($seccion['id'] ?? 0) ?>;
-    window.SECCION_SLUG = '<?= htmlspecialchars($slug ?? '') ?>';
-</script>
-
 <div id="modal-overlay" class="modal-overlay" hidden>
     <div class="modal-box">
         <div class="modal-header">

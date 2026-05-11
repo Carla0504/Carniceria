@@ -8,8 +8,11 @@ if (!isset($_SESSION['user'])) {
 
 $titulo = 'La Dehesa — Imágenes';
 require __DIR__ . '/../../../app/views/layout/header.php';
-echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/galeria.css">';
+?>
 
+<link rel="stylesheet" href="/Carniceria/crm/public/css/galeria.css">
+
+<?php
 $imagenes = glob(__DIR__ . '/../../../public/img/galeria/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
 ?>
 

@@ -1,10 +1,9 @@
+const urlProductos = '/Carniceria/crm/app/api/productos.php';
+let overlay = document.getElementById('modal-overlay');
+let formulario = document.getElementById('form-producto');
+let tituloModal = document.getElementById('modal-titulo');
 
-const API = '/Carniceria/crm/app/api/productos.php';
-
-const overlay = document.getElementById('modal-overlay');
-const form = document.getElementById('form-producto');
-const modalTitulo = document.getElementById('modal-titulo');
-
+// abro y cierro el modal
 function abrirModal() {
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -13,79 +12,96 @@ function abrirModal() {
 function cerrarModal() {
     overlay.hidden = true;
     document.body.style.overflow = '';
-    form.reset();
+    formulario.reset();
     document.getElementById('grupo-foto-actual').hidden = true;
 }
 
 document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
 document.getElementById('btn-cancelar').addEventListener('click', cerrarModal);
-overlay.addEventListener('click', e => { if (e.target === overlay) cerrarModal(); });
 
-function abrirModalCrear() {
-    modalTitulo.textContent = 'Nuevo producto';
+// cierro el modal si el usuario hace clic fuera
+overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) cerrarModal();
+});
+
+// abro el modal para crear un producto nuevo
+function abrirModalCrear(idSeccion) {
+    tituloModal.textContent = 'Nuevo producto';
     document.getElementById('field-action').value = 'crear';
     document.getElementById('field-id').value = '';
     document.getElementById('field-foto-actual').value = '';
-    document.getElementById('field-seccion').value = window.SECCION_ID;
+    document.getElementById('field-seccion').value = idSeccion;
     document.getElementById('field-disponible').checked = true;
     abrirModal();
 }
 
+// abro el modal para editar, primero cargo los datos del producto desde la api
 async function abrirModalEditar(id) {
-    const res = await fetch(`${API}?id=${id}`);
-    const p = await res.json();
-    if (!p) return;
+    try {
+        let respuesta = await fetch(urlProductos + '?id=' + id);
+        let producto = await respuesta.json();
+        
+        if (!producto) return;
+        tituloModal.textContent = 'Editar producto';
+        document.getElementById('field-action').value = 'actualizar';
+        document.getElementById('field-id').value = producto.id;
+        document.getElementById('field-foto-actual').value = producto.foto || '';
+        document.getElementById('field-seccion').value = producto.id_seccion;
+        document.getElementById('field-nombre').value = producto.nombre;
+        document.getElementById('field-descripcion').value = producto.descripcion || '';
+        document.getElementById('field-precio').value = producto.precio;
+        document.getElementById('field-disponible').checked = parseInt(producto.disponible) === 1;
 
-    modalTitulo.textContent = 'Editar producto';
-    document.getElementById('field-action').value = 'actualizar';
-    document.getElementById('field-id').value = p.id;
-    document.getElementById('field-foto-actual').value = p.foto || '';
-    document.getElementById('field-seccion').value = p.id_seccion;
-    document.getElementById('field-nombre').value = p.nombre;
-    document.getElementById('field-descripcion').value = p.descripcion || '';
-    document.getElementById('field-precio').value = p.precio;
-    document.getElementById('field-disponible').checked = parseInt(p.disponible) === 1;
-
-    const grupoFoto = document.getElementById('grupo-foto-actual');
-    if (p.foto) {
-        document.getElementById('texto-foto-actual').textContent = p.foto;
-        grupoFoto.hidden = false;
-    } else {
-        grupoFoto.hidden = true;
+        let grupoFoto = document.getElementById('grupo-foto-actual');
+        if (producto.foto) {
+            document.getElementById('texto-foto-actual').textContent = producto.foto;
+            grupoFoto.hidden = false;
+        } else {
+            grupoFoto.hidden = true;
+        }
+        abrirModal();
+    } catch (e) {
+        console.error('Error al cargar el producto:', e);
     }
-
-    abrirModal();
 }
 
+// elimina el producto y lo quita del html sin recargar la página
 async function eliminarProducto(id, card) {
     if (!confirm('¿Eliminar este producto?')) return;
+    let formData = new FormData();
+    formData.append('_action', 'eliminar');
+    formData.append('id', id);
+    
+    try {
+        let respuesta = await fetch(urlProductos, { method: 'POST', body: formData });
+        let resultado = await respuesta.json();
 
-    const fd = new FormData();
-    fd.append('_action', 'eliminar');
-    fd.append('id', id);
-
-    const res = await fetch(API, { method: 'POST', body: fd });
-    const data = await res.json();
-
-    if (data.ok) {
-        card.remove();
-    } else {
-        alert('Error al eliminar el producto.');
+        if (resultado.ok) {
+            card.remove();
+        } else {
+            alert('No se ha podido eliminar el producto.');
+        }
+    } catch (e) {
+        console.error('Error al eliminar:', e);
     }
 }
 
-form.addEventListener('submit', async e => {
+// guardo el formulario (crear o editar) y recargo para ver los cambios
+formulario.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const fd = new FormData(form);
-    if (!fd.get('disponible')) fd.set('disponible', '0');
+    let formData = new FormData(formulario);
+    if (!formData.get('disponible')) formData.set('disponible', '0');
+    try {
+        let respuesta = await fetch(urlProductos, { method: 'POST', body: formData });
+        let resultado = await respuesta.json();
 
-    const res = await fetch(API, { method: 'POST', body: fd });
-    const data = await res.json();
-
-    if (data.ok) {
-        cerrarModal();
-        location.reload();
-    } else {
-        alert('Error al guardar el producto.');
+        if (resultado.ok) {
+            cerrarModal();
+            location.reload();
+        } else {
+            alert('Error al guardar el producto.');
+        }
+    } catch (e) {
+        console.error('Error al guardar:', e);
     }
 });

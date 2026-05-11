@@ -15,8 +15,9 @@ $productos = Producto::porSeccion($pdo, $seccion['id']);
 
 $titulo = 'La Dehesa — Carnicería';
 require __DIR__ . '/../layout/header.php';
-echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">';
 ?>
+
+<link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">
 
 <div class="catalogo-header">
     <p class="secciones-tag"><?= htmlspecialchars($seccion['descripcion']) ?></p>
@@ -25,13 +26,13 @@ echo '<link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">';
 
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
 <div class="admin-toolbar">
-    <button class="btn-admin-add" onclick="abrirModalCrear()">+ Añadir producto</button>
+    <button class="btn-admin-add" onclick="abrirModalCrear(<?= $seccion['id'] ?>)">+ Añadir producto</button>
 </div>
 <?php endif; ?>
 
 <div class="catalogo-grid">
     <?php foreach ($productos as $p): ?>
-        <?php $enPromo = !is_null($p['precio_promocional']); ?>
+        <?php $enPromo = $p['precio_promocional'] != null; ?>
         <div class="producto-card" id="card-<?= $p['id'] ?>">
             <div class="producto-foto">
                 <?php if ($p['foto']): ?>

@@ -2,18 +2,18 @@
 session_start();
 header('Content-Type: application/json; charset=utf-8');
 
+// solo los administradores pueden usar esta api
 if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] !== 'admin') {
-    http_response_code(403);
-    echo json_encode(['error' => 'No autorizado']);
+    echo json_encode(['error' => 'No tienes permiso para hacer esto']);
     exit();
 }
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../models/Producto.php';
+$metodo = $_SERVER['REQUEST_METHOD'];
 
-$method = $_SERVER['REQUEST_METHOD'];
-
-if ($method === 'GET') {
+// GET: devuelvo un producto por id o todos
+if ($metodo === 'GET') {
     if (isset($_GET['id'])) {
         echo json_encode(Producto::porId($pdo, (int)$_GET['id']));
     } else {
@@ -22,27 +22,31 @@ if ($method === 'GET') {
     exit();
 }
 
-if ($method === 'POST') {
-    $action = $_POST['_action'] ?? '';
+// POST: crear, editar o eliminar producto
+if ($metodo === 'POST') {
+    $accion = $_POST['_action'] ?? '';
 
-    if ($action === 'eliminar') {
+    if ($accion === 'eliminar') {
         Producto::eliminar($pdo, (int)$_POST['id']);
         echo json_encode(['ok' => true]);
         exit();
     }
 
+    // necesito el slug de la sección para guardar la foto en la carpeta correcta
     $idSeccion = (int)$_POST['id_seccion'];
     $stmt = $pdo->prepare("SELECT slug FROM secciones WHERE id = ? LIMIT 1");
     $stmt->execute([$idSeccion]);
     $slug = $stmt->fetchColumn();
 
+    // si han subido una foto la muevo a la carpeta de imágenes
     $foto = $_POST['foto_actual'] ?? null;
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $ext = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
-        $nombre = uniqid() . '.' . $ext;
-        $destino = __DIR__ . '/../../public/img/productos/' . $slug . '/' . $nombre;
+        $extension = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
+        $nombreFoto = uniqid() . '.' . $extension;
+        $destino = __DIR__ . '/../../public/img/productos/' . $slug . '/' . $nombreFoto;
+
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
-            $foto = $nombre;
+            $foto = $nombreFoto;
         }
     }
 
@@ -55,18 +59,17 @@ if ($method === 'POST') {
         'disponible' => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
     ];
 
-    if ($action === 'crear') {
+    if ($accion === 'crear') {
         Producto::crear($pdo, $datos);
         echo json_encode(['ok' => true]);
-    } elseif ($action === 'actualizar') {
+    } else if ($accion === 'actualizar') {
         Producto::actualizar($pdo, (int)$_POST['id'], $datos);
         echo json_encode(['ok' => true]);
     } else {
-        http_response_code(400);
-        echo json_encode(['error' => 'Acción desconocida']);
+        echo json_encode(['error' => 'Acción no reconocida']);
     }
+
     exit();
 }
 
-http_response_code(405);
 echo json_encode(['error' => 'Método no permitido']);
