@@ -40,7 +40,7 @@ require __DIR__ . '/../layout/header.php';
                          alt="<?= htmlspecialchars($p['nombre']) ?>">
                 <?php endif; ?>
                 <?php if ($enPromo): ?>
-                    <span class="badge-oferta">Oferta</span>
+                    <span class="badge-oferta"><?= $t['badge_oferta'] ?></span>
                 <?php endif; ?>
             </div>
             <div class="producto-info">
@@ -58,7 +58,7 @@ require __DIR__ . '/../layout/header.php';
                 <button class="btn-carrito"
                         data-id="<?= $p['id'] ?>"
                         data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
-                    Añadir al carrito
+                    <?= $t['anadir_carrito'] ?>
                 </button>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
                 <div class="admin-card-actions">

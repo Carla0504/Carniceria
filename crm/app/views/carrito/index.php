@@ -27,14 +27,14 @@ require __DIR__ . '/../layout/header.php';
 <link rel="stylesheet" href="/Carniceria/crm/public/css/carrito.css">
 
 <div class="carrito-page">
-    <h1>Tu carrito</h1>
-    <p class="carrito-nota">Los precios son orientativos. Pasa por nuestra tienda para formalizar tu compra.</p>
+    <h1><?= $t['carrito_titulo'] ?></h1>
+    <p class="carrito-nota"><?= $t['carrito_nota'] ?></p>
 
     <?php if (empty($productos)): ?>
 
         <div class="carrito-vacio">
-            <p>No tienes ningún producto en el carrito.</p>
-            <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="btn-ver-catalogo">Ver catálogo</a>
+            <p><?= $t['carrito_vacio'] ?></p>
+            <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="btn-ver-catalogo"><?= $t['carrito_ver_catalogo'] ?></a>
         </div>
 
     <?php else: ?>
@@ -82,9 +82,9 @@ require __DIR__ . '/../layout/header.php';
         </ul>
 
         <div class="carrito-total-bar">
-            <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+            <button class="btn-vaciar" onclick="vaciarCarrito()"><?= $t['carrito_vaciar'] ?></button>
             <div class="carrito-total">
-                Total estimado: <strong id="total-valor"><?= number_format($total, 2, ',', '.') ?> €</strong>
+                <?= $t['carrito_total'] ?>: <strong id="total-valor"><?= number_format($total, 2, ',', '.') ?> €</strong>
             </div>
         </div>
 

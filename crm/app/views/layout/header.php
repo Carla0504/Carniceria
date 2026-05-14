@@ -1,5 +1,13 @@
+<?php
+// actualizo el idioma en sesión si viene por URL
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
+    $_SESSION['lang'] = $_GET['lang'];
+}
+$idioma = $_SESSION['lang'] ?? 'es';
+$t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
+?>
 <!DOCTYPE html>
-<html lang="<?= $_SESSION['lang'] ?? 'es' ?>">
+<html lang="<?= $idioma ?>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,29 +27,29 @@
 
   <ul class="menu">
     <li>
-      <a href="/Carniceria/crm/index.php">Inicio</a>
+      <a href="/Carniceria/crm/index.php"><?= $t['nav_inicio'] ?></a>
       <ul class="submenu">
-        <li><a href="/Carniceria/crm/index.php#sobre-nosotros">Sobre nosotros</a></li>
-        <li><a href="/Carniceria/crm/index.php#localizacion">Localización</a></li>
+        <li><a href="/Carniceria/crm/index.php#sobre-nosotros"><?= $t['sobre_tag'] ?></a></li>
+        <li><a href="/Carniceria/crm/index.php#localizacion"><?= $t['localizacion_tag'] ?></a></li>
       </ul>
     </li>
     <li><a href="/Carniceria/crm/app/views/catalogo/carniceria.php">Carnicería</a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/charcuteria.php">Charcutería</a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/polleria.php">Pollería</a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/conservas.php">Conservas</a></li>
-    <li><a href="/Carniceria/crm/app/views/galeria/index.php">Imágenes</a></li>
-    <li><a href="/Carniceria/crm/app/views/contacto/index.php">Contacto</a></li>
+    <li><a href="/Carniceria/crm/app/views/galeria/index.php"><?= $t['nav_imagenes'] ?></a></li>
+    <li><a href="/Carniceria/crm/app/views/contacto/index.php"><?= $t['nav_contacto'] ?></a></li>
 
     <?php if (isset($_SESSION['user'])): ?>
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
 
       <li>
         <form action="/Carniceria/crm/app/controllers/logoutController.php" method="POST" style="display:inline;">
-          <button class="logout">Salir</button>
+          <button class="logout"><?= $t['nav_salir'] ?></button>
         </form>
       </li>
     <?php else: ?>
-      <li><a href="/Carniceria/crm/app/views/auth/login.php">Iniciar sesión</a></li>
+      <li><a href="/Carniceria/crm/app/views/auth/login.php"><?= $t['nav_iniciar_sesion'] ?></a></li>
     <?php endif; ?>
 
     <li>
