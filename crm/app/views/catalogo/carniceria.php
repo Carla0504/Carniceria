@@ -67,6 +67,15 @@ require __DIR__ . '/../layout/header.php';
                             onclick="eliminarProducto(<?= $p['id'] ?>, document.getElementById('card-<?= $p['id'] ?>'))">
                         Eliminar
                     </button>
+                    <?php if ($p['id_promo']): ?>
+                        <button class="btn-admin-promo"
+                                onclick="abrirModalEditarPromo(<?= $p['id'] ?>, <?= $p['id_promo'] ?>)">Editar oferta</button>
+                        <button class="btn-admin-promo-delete"
+                                onclick="quitarPromo(<?= $p['id_promo'] ?>)">Quitar oferta</button>
+                    <?php else: ?>
+                        <button class="btn-admin-promo"
+                                onclick="abrirModalCrearPromo(<?= $p['id'] ?>)">Añadir oferta</button>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
             </div>

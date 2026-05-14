@@ -172,9 +172,13 @@
     border-top: 1px solid rgba(255,255,255,0.07);
 }
 
+.admin-card-actions {
+    flex-wrap: wrap;
+}
 .btn-admin-edit,
-.btn-admin-delete {
-    flex: 1;
+.btn-admin-delete,
+.btn-admin-promo,
+.btn-admin-promo-delete {
     padding: 0.4rem 0.5rem;
     border-radius: 6px;
     font-size: 0.78rem;
@@ -198,3 +202,17 @@
 }
 
 .btn-admin-delete:hover { background: rgba(239,68,68,0.25); }
+
+.btn-admin-promo {
+    background: rgba(234,179,8,0.12);
+    color: #fde68a;
+}
+
+.btn-admin-promo:hover { background: rgba(234,179,8,0.25); }
+
+.btn-admin-promo-delete {
+    background: rgba(234,179,8,0.07);
+    color: #ca8a04;
+}
+
+.btn-admin-promo-delete:hover { background: rgba(234,179,8,0.16); }

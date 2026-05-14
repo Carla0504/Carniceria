@@ -60,5 +60,34 @@
     </div>
 </div>
 
+<div id="modal-overlay-promo" class="modal-overlay" hidden>
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 id="modal-titulo-promo">Añadir oferta</h3>
+            <button type="button" id="modal-cerrar-promo" class="modal-cerrar">✕</button>
+        </div>
+        <form id="form-promo" novalidate>
+            <input type="hidden" name="_action" id="field-promo-action">
+            <input type="hidden" name="id" id="field-promo-id">
+            <input type="hidden" name="id_producto" id="field-promo-id-producto">
+            <div class="form-group">
+                <label>Precio con oferta (€/kg)</label>
+                <input type="number" name="precio_promocional" id="field-promo-precio" step="0.01" min="0" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha inicio</label>
+                <input type="date" name="fecha_inicio" id="field-promo-inicio">
+            </div>
+            <div class="form-group">
+                <label>Fecha fin</label>
+                <input type="date" name="fecha_fin" id="field-promo-fin">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Guardar oferta</button>
+                <button type="button" class="btn btn-secondary" id="btn-cancelar-promo">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
 <script src="/Carniceria/crm/public/js/admin.js"></script>
 <?php endif; ?>

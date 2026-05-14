@@ -20,7 +20,7 @@ class Producto {
 
     // devuelve los productos de una sección con su precio promocional si tiene
     public static function porSeccion($pdo, $idSeccion) {
-        $sql = "SELECT p.*, pr.precio_promocional
+        $sql = "SELECT p.*, pr.id AS id_promo, pr.precio_promocional
                 FROM productos p
                 LEFT JOIN promociones pr ON pr.id_producto = p.id
                     AND pr.activa = 1
