@@ -1,0 +1,128 @@
+.contacto-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contacto-info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #f5f0e8;
+    margin-bottom: 1rem;
+}
+
+.contacto-info p {
+    color: #9ca3af;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.contacto-datos {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contacto-datos li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: #d1d5db;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.dato-label {
+    font-weight: 600;
+    color: #f5f0e8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* formulario */
+.contacto-formulario {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.campo label {
+    font-size: 0.875rem;
+    color: #d1d5db;
+    font-weight: 500;
+}
+
+.campo input,
+.campo textarea {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: #f5f0e8;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: #b45309;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #4b5563;
+}
+
+.btn-enviar {
+    width: 100%;
+    background: #b45309;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-enviar:hover {
+    background: #92400e;
+}
+
+.contacto-exito {
+    text-align: center;
+    padding: 2rem 0;
+    color: #6ee7b7;
+    font-size: 1rem;
+}
+
+.contacto-error {
+    color: #fca5a5;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+    .contacto-page {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

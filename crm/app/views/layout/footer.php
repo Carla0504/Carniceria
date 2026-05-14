@@ -17,8 +17,8 @@
     <div class="info-icon-wrap">💬</div>
     <div>
       <h3>Contacto</h3>
-      <p>Visítanos en tienda o consulta nuestro catálogo online.</p>
-      <a href="#" class="info-link">Ir al contacto →</a>
+      <p>Tel: 91 234 56 78<br>info@ladehesa.es</p>
+      <a href="/Carniceria/crm/app/views/contacto/index.php" class="info-link">Ir al contacto →</a>
     </div>
   </div>
 </section>
@@ -27,9 +27,9 @@
   <div class="footer-content">
     <p>&copy; <?= date('Y') ?> La Dehesa &mdash; Calle Seis de Diciembre, Aravaca (Madrid)</p>
     <p>
-      <a href="#">Sobre nosotros</a> &middot;
-      <a href="#">Contacto</a> &middot;
-      <a href="#">Localización</a>
+      <a href="/Carniceria/crm/index.php#sobre-nosotros">Sobre nosotros</a> &middot;
+      <a href="/Carniceria/crm/app/views/galeria/index.php">Galería</a> &middot;
+      <a href="/Carniceria/crm/app/views/contacto/index.php">Contacto</a>
     </p>
   </div>
 </footer>

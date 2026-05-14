@@ -21,8 +21,8 @@
     <li>
       <a href="/Carniceria/crm/index.php">Inicio</a>
       <ul class="submenu">
-        <li><a href="#">Sobre nosotros</a></li>
-        <li><a href="#">Localización</a></li>
+        <li><a href="/Carniceria/crm/index.php#sobre-nosotros">Sobre nosotros</a></li>
+        <li><a href="/Carniceria/crm/index.php#localizacion">Localización</a></li>
       </ul>
     </li>
     <li><a href="/Carniceria/crm/app/views/catalogo/carniceria.php">Carnicería</a></li>
@@ -30,7 +30,7 @@
     <li><a href="/Carniceria/crm/app/views/catalogo/polleria.php">Pollería</a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/conservas.php">Conservas</a></li>
     <li><a href="/Carniceria/crm/app/views/galeria/index.php">Imágenes</a></li>
-    <li><a href="#">Contacto</a></li>
+    <li><a href="/Carniceria/crm/app/views/contacto/index.php">Contacto</a></li>
 
     <?php if (isset($_SESSION['user'])): ?>
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
