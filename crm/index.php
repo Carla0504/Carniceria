@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['user'])) {
-  header("Location: /Carniceria/crm/app/views/auth/login.php");
-  exit();
-}
-
 $titulo = 'La Dehesa — Inicio';
 require __DIR__ . '/app/views/layout/header.php';
 ?>

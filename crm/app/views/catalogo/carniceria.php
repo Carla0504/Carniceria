@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header("Location: /Carniceria/crm/app/views/auth/login.php");
-    exit();
-}
 
 require_once __DIR__ . '/../../../config/db.php';
 require_once __DIR__ . '/../../models/Producto.php';
@@ -55,11 +51,15 @@ require __DIR__ . '/../layout/header.php';
                     <?php endif; ?>
                     <span class="precio-kg">/kg</span>
                 </div>
+                <?php if (isset($_SESSION['user'])): ?>
                 <button class="btn-carrito"
                         data-id="<?= $p['id'] ?>"
                         data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
                     <?= $t['anadir_carrito'] ?>
                 </button>
+                <?php else: ?>
+                <a href="/Carniceria/crm/app/views/auth/login.php" class="btn-carrito"><?= $t['anadir_carrito'] ?></a>
+                <?php endif; ?>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
                 <div class="admin-card-actions">
                     <button class="btn-admin-edit" onclick="abrirModalEditar(<?= $p['id'] ?>)">Editar</button>
