@@ -1,8 +1,9 @@
 <?php
-$host = 'localhost';
-$dbname = 'la_dehesa';
-$user = 'root';
-$pass = '';
+// en Docker se inyectan estas variables; en XAMPP se usan los valores por defecto
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'la_dehesa';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass, [

@@ -1,4 +1,4 @@
-const urlApi = '/Carniceria/crm/app/api/carrito.php';
+const urlApi = '/Carniceria/crm/public/api/carrito.php';
 
 // cargo el número de productos del carrito al entrar a cualquier página
 async function cargarBadge() {

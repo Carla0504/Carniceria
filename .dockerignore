@@ -1,0 +1,8 @@
+.git
+.agents
+.claude
+*.md
+*.pdf
+*.png
+*.docx
+*.py

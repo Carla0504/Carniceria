@@ -3,6 +3,10 @@
 !/crm
 !.gitignore
 !README.md
+!Dockerfile
+!docker-compose.yml
+!.dockerignore
+!.env.example
 
 # Dentro del proyecto
 /crm/config/.env

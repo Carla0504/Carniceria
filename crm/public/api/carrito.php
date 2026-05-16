@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../models/CarritoItem.php';
+require_once __DIR__ . '/../../app/models/CarritoItem.php';
 
 $idUsuario = (int) $_SESSION['user']['id'];
 $metodo = $_SERVER['REQUEST_METHOD'];

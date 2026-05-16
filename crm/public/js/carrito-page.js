@@ -1,4 +1,4 @@
-const urlCarrito = '/Carniceria/crm/app/api/carrito.php';
+const urlCarrito = '/Carniceria/crm/public/api/carrito.php';
 
 // formateo el precio con coma en vez de punto porque en España se usa así
 function formatearPrecio(valor) {

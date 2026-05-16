@@ -1,5 +1,5 @@
-const urlProductos = '/Carniceria/crm/app/api/productos.php';
-const urlPromos = '/Carniceria/crm/app/api/promociones.php';
+const urlProductos = '/Carniceria/crm/public/api/productos.php';
+const urlPromos = '/Carniceria/crm/public/api/promociones.php';
 let overlay = document.getElementById('modal-overlay');
 let formulario = document.getElementById('form-producto');
 let tituloModal = document.getElementById('modal-titulo');
