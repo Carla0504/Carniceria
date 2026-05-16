@@ -1,85 +1,87 @@
 /* Estilos exclusivos de login y register — no se carga en el resto de la web */
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-/* BODY */
 body {
-  height: 100vh;
-  background: linear-gradient(135deg, #4f46e5, #9333ea);
+  min-height: 100vh;
+  background: #120f0a;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Inter', sans-serif;
+  padding: 1.5rem;
 }
-
-/* CARD */
 .card {
-  background: #ffffff;
-  padding: 2rem;
+  background: #1e1a14;
+  border: 1px solid rgba(255,200,120,0.12);
+  padding: 2.5rem 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   text-align: center;
 }
-
-/* TITLES */
+.card-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e8c07a;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.75rem;
+}
 .card h1 {
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
-  color: #111827;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  margin-bottom: 0.4rem;
 }
-
 .subtitle {
-  margin-bottom: 1.5rem;
-  color: #6b7280;
-  font-size: 0.95rem;
+  color: #7d6e5e;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
 }
-
-/* ERROR */
 .error-msg {
-  background: #fee2e2;
-  color: #b91c1c;
-  border: 1px solid #fca5a5;
+  background: rgba(180,40,20,0.18);
+  color: #e8825a;
+  border: 1px solid rgba(180,40,20,0.35);
   border-radius: 8px;
   padding: 0.6rem 0.9rem;
-  margin-bottom: 1.2rem;
-  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  text-align: left;
 }
-
-/* FORM */
 .field {
   text-align: left;
   margin-bottom: 1.2rem;
 }
-
 .field label {
   display: block;
   margin-bottom: 0.4rem;
-  font-size: 0.9rem;
-  color: #374151;
+  font-size: 0.85rem;
+  color: #a89880;
 }
-
-/* INPUT */
 .input-wrap input {
   width: 100%;
-  padding: 0.7rem 0.8rem;
-  border: 1px solid #d1d5db;
+  padding: 0.7rem 0.9rem;
+  background: #120f0a;
+  border: 1px solid rgba(255,200,120,0.15);
   border-radius: 8px;
+  color: #f5f0e8;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
   outline: none;
-  transition: 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-
+.input-wrap input::placeholder {
+  color: #4a3f35;
+}
 .input-wrap input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: #e8c07a;
+  box-shadow: 0 0 0 2px rgba(232,192,122,0.15);
 }
-
-/* ROW */
 .row {
   display: flex;
   justify-content: space-between;
@@ -87,65 +89,55 @@ body {
   margin-bottom: 1.2rem;
   font-size: 0.85rem;
 }
-
 .remember {
   display: flex;
   align-items: center;
-  gap: 5px;
-  color: #374151;
+  gap: 6px;
+  color: #7d6e5e;
 }
-
 .remember input {
   cursor: pointer;
+  accent-color: #e8c07a;
 }
-
 .forgot {
-  color: #6366f1;
+  color: #e8825a;
   text-decoration: none;
+  font-size: 0.85rem;
 }
-
 .forgot:hover {
   text-decoration: underline;
 }
-
-/* BUTTON */
 .btn-submit {
   width: 100%;
-  padding: 0.75rem;
-  background: #6366f1;
+  padding: 0.8rem;
+  background: #9a2b0c;
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.2s;
 }
-
 .btn-submit:hover {
-  background: #4f46e5;
+  background: #7a1f08;
 }
-
-/* SIGNUP LINK */
 .signup {
-  margin-top: 1.2rem;
-  font-size: 0.9rem;
-  color: #6b7280;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #7d6e5e;
 }
-
 .signup a {
-  color: #6366f1;
+  color: #e8c07a;
   text-decoration: none;
   font-weight: 500;
 }
-
 .signup a:hover {
   text-decoration: underline;
 }
-
-/* RESPONSIVE */
 @media (max-width: 480px) {
   .card {
-    margin: 1rem;
-    padding: 1.5rem;
+    padding: 2rem 1.25rem;
   }
 }
