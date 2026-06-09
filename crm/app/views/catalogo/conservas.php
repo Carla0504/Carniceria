@@ -51,11 +51,17 @@ require __DIR__ . '/../layout/header.php';
                     <?php endif; ?>
                     <span class="precio-kg">/kg</span>
                 </div>
+                <?php if ((int)$p['stock'] === 0): ?>
+                <span class="badge-sin-stock"><?= $t['badge_sin_stock'] ?></span>
+                <?php elseif ((int)$p['stock'] <= 5): ?>
+                <p class="stock-aviso"><?= $t['badge_poco_stock'] ?></p>
+                <?php endif; ?>
                 <?php if (isset($_SESSION['user'])): ?>
-                <button class="btn-carrito"
+                <button class="btn-carrito<?= (int)$p['stock'] === 0 ? ' btn-carrito--agotado' : '' ?>"
+                        <?= (int)$p['stock'] === 0 ? 'disabled' : '' ?>
                         data-id="<?= $p['id'] ?>"
                         data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
-                    <?= $t['anadir_carrito'] ?>
+                    <?= (int)$p['stock'] === 0 ? $t['badge_sin_stock'] : $t['anadir_carrito'] ?>
                 </button>
                 <?php else: ?>
                 <a href="/Carniceria/crm/app/views/auth/login.php" class="btn-carrito"><?= $t['anadir_carrito'] ?></a>

@@ -31,6 +31,10 @@
                 <label>Precio (€/kg)</label>
                 <input type="number" name="precio" id="field-precio" step="0.01" min="0" required>
             </div>
+            <div class="form-group">
+                <label>Stock (kg disponibles)</label>
+                <input type="number" name="stock" id="field-stock" min="0" step="1" value="0">
+            </div>
             <div class="form-group" id="grupo-foto-actual" hidden>
                 <p class="foto-actual-texto">Foto actual: <span id="texto-foto-actual"></span></p>
             </div>

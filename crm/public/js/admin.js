@@ -33,6 +33,7 @@ function abrirModalCrear(idSeccion) {
     document.getElementById('field-foto-actual').value = '';
     document.getElementById('field-seccion').value = idSeccion;
     document.getElementById('field-disponible').checked = true;
+    document.getElementById('field-stock').value = '0';
     abrirModal();
 }
 
@@ -52,6 +53,7 @@ async function abrirModalEditar(id) {
         document.getElementById('field-descripcion').value = producto.descripcion || '';
         document.getElementById('field-precio').value = producto.precio;
         document.getElementById('field-disponible').checked = parseInt(producto.disponible) === 1;
+        document.getElementById('field-stock').value = producto.stock || 0;
 
         let grupoFoto = document.getElementById('grupo-foto-actual');
         if (producto.foto) {

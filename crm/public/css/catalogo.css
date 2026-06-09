@@ -141,6 +141,33 @@
     border-color: #991b1b;
 }
 
+.btn-carrito--agotado,
+.btn-carrito--agotado:hover {
+    background: transparent;
+    border-color: #9ca3af;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.stock-aviso {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #b45309;
+    margin: 0.4rem 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badge-sin-stock {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0.4rem 0 0;
+}
+
 @media (max-width: 768px) {
     .catalogo-grid {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

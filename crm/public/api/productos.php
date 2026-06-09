@@ -57,6 +57,7 @@ if ($metodo === 'POST') {
         'precio' => (float)$_POST['precio'],
         'foto' => $foto ?: null,
         'disponible' => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
+        'stock' => max(0, (int)($_POST['stock'] ?? 0)),
     ];
 
     if ($accion === 'crear') {

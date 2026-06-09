@@ -40,6 +40,8 @@ return [
     // catálogo
     'anadir_carrito' => 'Añadir al carrito',
     'badge_oferta' => 'Oferta',
+    'badge_sin_stock' => 'Sin stock',
+    'badge_poco_stock' => 'Últimas unidades',
 
     // carrito
     'carrito_titulo' => 'Tu carrito',

@@ -40,6 +40,8 @@ return [
     // catalogue
     'anadir_carrito' => 'Add to cart',
     'badge_oferta' => 'Offer',
+    'badge_sin_stock' => 'Out of stock',
+    'badge_poco_stock' => 'Last units',
 
     // cart
     'carrito_titulo' => 'Your cart',

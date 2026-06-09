@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../app/models/CarritoItem.php';
+require_once __DIR__ . '/../../app/models/Producto.php';
 
 $idUsuario = (int) $_SESSION['user']['id'];
 $metodo = $_SERVER['REQUEST_METHOD'];
@@ -42,6 +43,12 @@ if ($metodo === 'POST') {
 
         if ($idProducto === 0) {
             echo json_encode(['error' => 'Falta el id del producto']);
+            exit();
+        }
+
+        $producto = Producto::porId($pdo, $idProducto);
+        if (!$producto || (int)$producto['stock'] === 0) {
+            echo json_encode(['error' => 'Sin stock', 'sin_stock' => true]);
             exit();
         }
 
