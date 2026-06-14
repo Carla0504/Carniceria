@@ -7,7 +7,7 @@ class CarritoItem {
     // y otro join con promociones para saber si tiene precio rebajado
     public static function porUsuario($pdo, $idUsuario) {
         $sql = "SELECT ci.id, ci.cantidad,
-                       p.id AS id_producto, p.nombre, p.precio,
+                       p.id AS id_producto, p.nombre, p.precio, p.unidad_medida,
                        s.nombre AS seccion_nombre,
                        pr.precio_promocional
                 FROM carrito_items ci
@@ -43,14 +43,15 @@ class CarritoItem {
         return $total ? (int) $total : 0;
     }
 
-    // añade un producto al carrito, si ya existe le suma 1 a la cantidad
-    public static function agregar($pdo, $idUsuario, $idProducto) {
+    // añade un producto al carrito; el incremento depende de la unidad de medida
+    public static function agregar($pdo, $idUsuario, $idProducto, $incremento = 1) {
+        $incremento = max(0.001, (float)$incremento);
         $sql = "INSERT INTO carrito_items (id_usuario, id_producto, cantidad)
-                VALUES (?, ?, 1)
-                ON DUPLICATE KEY UPDATE cantidad = cantidad + 1";
+                VALUES (?, ?, ?)
+                ON DUPLICATE KEY UPDATE cantidad = cantidad + ?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$idUsuario, $idProducto]);
+        $stmt->execute([$idUsuario, $idProducto, $incremento, $incremento]);
     }
 
     // actualiza la cantidad de un producto concreto del carrito

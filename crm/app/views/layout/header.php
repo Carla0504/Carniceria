@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 // actualizo el idioma en sesión si viene por URL
 if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
     $_SESSION['lang'] = $_GET['lang'];

@@ -51,6 +51,8 @@ async function abrirModalEditar(id) {
         document.getElementById('field-nombre').value = producto.nombre;
         document.getElementById('field-descripcion').value = producto.descripcion || '';
         document.getElementById('field-precio').value = producto.precio;
+        document.getElementById('field-unidad').value = producto.unidad_medida || 'unidad';
+        document.getElementById('field-stock').value = producto.stock || 0;
         document.getElementById('field-disponible').checked = parseInt(producto.disponible) === 1;
 
         let grupoFoto = document.getElementById('grupo-foto-actual');

@@ -58,8 +58,8 @@ class Producto {
 
     // crea un producto nuevo
     public static function crear($pdo, $datos) {
-        $sql = "INSERT INTO productos (id_seccion, nombre, descripcion, precio, foto, disponible)
-                VALUES (:id_seccion, :nombre, :descripcion, :precio, :foto, :disponible)";
+        $sql = "INSERT INTO productos (id_seccion, nombre, descripcion, precio, unidad_medida, stock, foto, disponible)
+                VALUES (:id_seccion, :nombre, :descripcion, :precio, :unidad_medida, :stock, :foto, :disponible)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($datos);
@@ -69,12 +69,19 @@ class Producto {
     public static function actualizar($pdo, $id, $datos) {
         $sql = "UPDATE productos
                 SET id_seccion=:id_seccion, nombre=:nombre, descripcion=:descripcion,
-                    precio=:precio, foto=:foto, disponible=:disponible
+                    precio=:precio, unidad_medida=:unidad_medida, stock=:stock,
+                    foto=:foto, disponible=:disponible
                 WHERE id=:id";
 
         $datos['id'] = $id;
         $stmt = $pdo->prepare($sql);
         $stmt->execute($datos);
+    }
+
+    // actualiza solo el stock de un producto
+    public static function actualizarStock($pdo, $id, $stock) {
+        $stmt = $pdo->prepare("UPDATE productos SET stock = ? WHERE id = ?");
+        $stmt->execute([$stock, $id]);
     }
 
     // elimina un producto por id

@@ -40,37 +40,39 @@ CREATE TABLE productos (
     nombre VARCHAR(200) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
+    unidad_medida ENUM('kg','g','100g','unidad','bandeja') NOT NULL DEFAULT 'unidad',
+    stock DECIMAL(10,3) NOT NULL DEFAULT 0,
     foto VARCHAR(255),
     disponible TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_seccion) REFERENCES secciones(id) ON DELETE CASCADE
 );
 
-INSERT INTO productos (id_seccion, nombre, descripcion, precio, foto) VALUES
--- Carnicería
-(1, 'Entrecot de ternera', 'Corte jugoso de ternera nacional, ideal para plancha o barbacoa.', 18.90, NULL),
-(1, 'Chuletas de cerdo', 'Chuletas de cerdo ibérico con hueso, perfectas para asar.', 7.50, NULL),
-(1, 'Solomillo de cerdo', 'Pieza tierna y magra de cerdo, ideal para medallones.', 12.00, NULL),
-(1, 'Costillas de ternera', 'Costillas de ternera para horno o barbacoa, muy jugosas.', 9.80, NULL),
-(1, 'Hamburguesas artesanas', 'Hamburguesas elaboradas a mano con carne de ternera 100%.', 8.40, NULL),
+INSERT INTO productos (id_seccion, nombre, descripcion, precio, unidad_medida, stock, foto) VALUES
+-- Carnicería (precio por kg)
+(1, 'Entrecot de ternera', 'Corte jugoso de ternera nacional, ideal para plancha o barbacoa.', 18.90, 'kg', 15.000, NULL),
+(1, 'Chuletas de cerdo', 'Chuletas de cerdo ibérico con hueso, perfectas para asar.', 7.50, 'kg', 20.000, NULL),
+(1, 'Solomillo de cerdo', 'Pieza tierna y magra de cerdo, ideal para medallones.', 12.00, 'kg', 8.000, NULL),
+(1, 'Costillas de ternera', 'Costillas de ternera para horno o barbacoa, muy jugosas.', 9.80, 'kg', 12.000, NULL),
+(1, 'Hamburguesas artesanas', 'Hamburguesas elaboradas a mano con carne de ternera 100%.', 8.40, 'bandeja', 25.000, NULL),
 -- Charcutería
-(2, 'Jamón ibérico de bellota', 'Jamón ibérico de bellota curado 36 meses, sabor intenso.', 65.00, 'jamon-iberico-bellota.png'),
-(2, 'Lomo embuchado', 'Lomo de cerdo ibérico adobado y embutido artesanalmente.', 22.50, 'lomo_embuchado.png'),
-(2, 'Chorizo extra', 'Chorizo curado con pimentón de la Vera, sabor ahumado.', 11.00, 'chorizo extra.png'),
-(2, 'Salchichón ibérico', 'Salchichón elaborado con carnes selectas y especias naturales.', 13.50, NULL),
-(2, 'Morcilla de Burgos', 'Morcilla tradicional con arroz y cebolla, receta artesana.', 6.90, NULL),
+(2, 'Jamón ibérico de bellota', 'Jamón ibérico de bellota curado 36 meses, sabor intenso.', 65.00, 'kg', 5.000, 'jamon-iberico-bellota.png'),
+(2, 'Lomo embuchado', 'Lomo de cerdo ibérico adobado y embutido artesanalmente.', 22.50, 'unidad', 8.000, 'lomo_embuchado.png'),
+(2, 'Chorizo extra', 'Chorizo curado con pimentón de la Vera, sabor ahumado.', 11.00, 'unidad', 12.000, 'chorizo extra.png'),
+(2, 'Salchichón ibérico', 'Salchichón elaborado con carnes selectas y especias naturales.', 13.50, 'unidad', 10.000, NULL),
+(2, 'Morcilla de Burgos', 'Morcilla tradicional con arroz y cebolla, receta artesana.', 6.90, 'unidad', 15.000, NULL),
 -- Pollería
-(3, 'Pollo entero', 'Pollo fresco de granja, criado en libertad. Peso aproximado 1,8 kg.', 5.90, NULL),
-(3, 'Pechugas de pollo', 'Pechugas fileteadas listas para cocinar, sin piel ni hueso.', 7.20, NULL),
-(3, 'Muslos de pollo', 'Muslos con contramuslo, ideales para horno o guiso.', 4.50, NULL),
-(3, 'Pavo en filetes', 'Filetes de pavo finos, bajos en grasa y muy versátiles.', 8.00, NULL),
-(3, 'Alitas de pollo', 'Alitas frescas perfectas para asar o preparar en salsa.', 3.90, NULL),
--- Conservas
-(4, 'Paté de campaña', 'Paté artesano elaborado con hígado de cerdo y especias.', 3.50, NULL),
-(4, 'Morcilla en conserva', 'Morcilla de calidad envasada al vacío para mayor durabilidad.', 4.20, NULL),
-(4, 'Lomo en manteca', 'Lomo de cerdo ibérico conservado en manteca colorá tradicional.', 6.80, NULL),
-(4, 'Chicharrones', 'Chicharrones de cerdo crujientes, elaborados de forma artesanal.', 5.10, NULL),
-(4, 'Chistorra en aceite', 'Chistorra navarra en conserva de aceite de oliva virgen extra.', 4.75, NULL);
+(3, 'Pollo entero', 'Pollo fresco de granja, criado en libertad. Peso aproximado 1,8 kg.', 5.90, 'unidad', 20.000, NULL),
+(3, 'Pechugas de pollo', 'Pechugas fileteadas listas para cocinar, sin piel ni hueso.', 7.20, 'kg', 10.000, NULL),
+(3, 'Muslos de pollo', 'Muslos con contramuslo, ideales para horno o guiso.', 4.50, 'kg', 8.000, NULL),
+(3, 'Pavo en filetes', 'Filetes de pavo finos, bajos en grasa y muy versátiles.', 8.00, 'kg', 6.000, NULL),
+(3, 'Alitas de pollo', 'Alitas frescas perfectas para asar o preparar en salsa.', 3.90, 'kg', 15.000, NULL),
+-- Conservas (precio por unidad)
+(4, 'Paté de campaña', 'Paté artesano elaborado con hígado de cerdo y especias.', 3.50, 'unidad', 30.000, NULL),
+(4, 'Morcilla en conserva', 'Morcilla de calidad envasada al vacío para mayor durabilidad.', 4.20, 'unidad', 20.000, NULL),
+(4, 'Lomo en manteca', 'Lomo de cerdo ibérico conservado en manteca colorá tradicional.', 6.80, 'unidad', 15.000, NULL),
+(4, 'Chicharrones', 'Chicharrones de cerdo crujientes, elaborados de forma artesanal.', 5.10, 'unidad', 25.000, NULL),
+(4, 'Chistorra en aceite', 'Chistorra navarra en conserva de aceite de oliva virgen extra.', 4.75, 'unidad', 18.000, NULL);
 
 CREATE TABLE promociones (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -94,7 +96,7 @@ CREATE TABLE carrito_items (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT UNSIGNED NOT NULL,
     id_producto INT UNSIGNED NOT NULL,
-    cantidad TINYINT UNSIGNED NOT NULL DEFAULT 1,
+    cantidad DECIMAL(8,3) NOT NULL DEFAULT 1.000,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_usuario_producto (id_usuario, id_producto),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,

@@ -27,9 +27,25 @@
                 <label>Descripción</label>
                 <textarea name="descripcion" id="field-descripcion"></textarea>
             </div>
+            <div class="form-group form-row">
+                <div>
+                    <label>Precio (€)</label>
+                    <input type="number" name="precio" id="field-precio" step="0.01" min="0" required>
+                </div>
+                <div>
+                    <label>Unidad de medida</label>
+                    <select name="unidad_medida" id="field-unidad">
+                        <option value="kg">€/kg</option>
+                        <option value="g">€/g</option>
+                        <option value="100g">€/100g</option>
+                        <option value="unidad">€/unidad</option>
+                        <option value="bandeja">€/bandeja</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
-                <label>Precio (€/kg)</label>
-                <input type="number" name="precio" id="field-precio" step="0.01" min="0" required>
+                <label>Stock disponible</label>
+                <input type="number" name="stock" id="field-stock" step="0.001" min="0" value="0" required>
             </div>
             <div class="form-group" id="grupo-foto-actual" hidden>
                 <p class="foto-actual-texto">Foto actual: <span id="texto-foto-actual"></span></p>

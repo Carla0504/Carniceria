@@ -49,11 +49,14 @@ require __DIR__ . '/../layout/header.php';
                     <?php else: ?>
                         <span class="precio-actual"><?= number_format($p['precio'], 2, ',', '.') ?> €</span>
                     <?php endif; ?>
-                    <span class="precio-kg">/kg</span>
+                    <span class="precio-kg">/<?= htmlspecialchars($p['unidad_medida'] ?? 'unidad') ?></span>
                 </div>
-                <?php if (isset($_SESSION['user'])): ?>
+                <?php if ((float)$p['stock'] <= 0): ?>
+                    <span class="badge-agotado">Agotado</span>
+                <?php elseif (isset($_SESSION['user'])): ?>
                 <button class="btn-carrito"
                         data-id="<?= $p['id'] ?>"
+                        data-unidad="<?= htmlspecialchars($p['unidad_medida'] ?? 'unidad') ?>"
                         data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
                     <?= $t['anadir_carrito'] ?>
                 </button>

@@ -8,16 +8,25 @@ function formatearPrecio(valor) {
 // recorro todos los productos del carrito y sumo para sacar el total
 function recalcularTotal() {
     let total = 0;
-    let filas = document.querySelectorAll('.carrito-item');
-
-    filas.forEach(function(fila) {
+    document.querySelectorAll('.carrito-item').forEach(function(fila) {
         let id = fila.id.replace('item-', '');
         let precio = parseFloat(fila.dataset.precio);
-        let cantidad = parseInt(document.getElementById('cant-' + id).textContent);
+        let cantTexto = document.getElementById('cant-' + id).textContent.replace(',', '.');
+        let cantidad = parseFloat(cantTexto);
         total += precio * cantidad;
     });
-
     document.getElementById('total-valor').textContent = formatearPrecio(total);
+}
+
+function pasoDeItem(id) {
+    let fila = document.getElementById('item-' + id);
+    return fila ? parseFloat(fila.dataset.paso || 1) : 1;
+}
+
+function mostrarCantidad(id, valor) {
+    let paso = pasoDeItem(id);
+    let el = document.getElementById('cant-' + id);
+    el.textContent = paso < 1 ? valor.toFixed(2).replace('.', ',') : Math.round(valor);
 }
 
 // actualiza el numerito que sale en el icono del carrito del menú
@@ -28,26 +37,24 @@ function actualizarBadge(num) {
     }
 }
 
-// cuando el usuario pulsa +1 kg mando la petición a la api y actualizo la vista
-async function agregarMas(id, idProducto) {
+// suma una unidad/kg/etc al producto del carrito
+async function agregarMas(id, idProducto, paso) {
+    paso = paso || pasoDeItem(id);
     let formData = new FormData();
     formData.append('_action', 'agregar');
     formData.append('id_producto', idProducto);
+    formData.append('incremento', paso);
 
     try {
         let respuesta = await fetch(urlCarrito, { method: 'POST', body: formData });
         let resultado = await respuesta.json();
 
         if (resultado.ok) {
-            let cantidadEl = document.getElementById('cant-' + id);
-            let nuevaCantidad = parseInt(cantidadEl.textContent) + 1;
-            cantidadEl.textContent = nuevaCantidad;
+            let cantTexto = document.getElementById('cant-' + id).textContent.replace(',', '.');
+            let nuevaCantidad = parseFloat(cantTexto) + paso;
+            mostrarCantidad(id, nuevaCantidad);
 
-            // solo muestro el botón de quitar si hay más de 1 kg
-            let botonMenos = document.getElementById('menos-' + id);
-            if (nuevaCantidad >= 2) {
-                botonMenos.style.display = '';
-            }
+            document.getElementById('menos-' + id).style.display = '';
 
             let precio = parseFloat(document.getElementById('item-' + id).dataset.precio);
             document.getElementById('sub-' + id).textContent = formatearPrecio(precio * nuevaCantidad);
@@ -60,14 +67,15 @@ async function agregarMas(id, idProducto) {
     }
 }
 
-// quita 1 kg, si llega a 1 escondo el botón para que no baje de ahí
+// resta una unidad/kg/etc; si llega al mínimo oculta el botón
 async function quitarUno(id) {
-    let cantidadEl = document.getElementById('cant-' + id);
-    let cantidadActual = parseInt(cantidadEl.textContent);
+    let paso = pasoDeItem(id);
+    let cantTexto = document.getElementById('cant-' + id).textContent.replace(',', '.');
+    let cantidadActual = parseFloat(cantTexto);
 
-    if (cantidadActual <= 1) return;
+    if (cantidadActual <= paso) return;
 
-    let nuevaCantidad = cantidadActual - 1;
+    let nuevaCantidad = Math.round((cantidadActual - paso) * 1000) / 1000;
 
     let formData = new FormData();
     formData.append('_action', 'actualizar');
@@ -79,11 +87,10 @@ async function quitarUno(id) {
         let resultado = await respuesta.json();
 
         if (resultado.ok) {
-            cantidadEl.textContent = nuevaCantidad;
+            mostrarCantidad(id, nuevaCantidad);
 
-            let botonMenos = document.getElementById('menos-' + id);
-            if (nuevaCantidad <= 1) {
-                botonMenos.style.display = 'none';
+            if (nuevaCantidad <= paso) {
+                document.getElementById('menos-' + id).style.display = 'none';
             }
 
             let precio = parseFloat(document.getElementById('item-' + id).dataset.precio);

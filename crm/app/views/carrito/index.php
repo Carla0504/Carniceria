@@ -40,10 +40,23 @@ require __DIR__ . '/../layout/header.php';
     <?php else: ?>
 
         <ul class="carrito-lista" id="carrito-lista">
-            <?php foreach ($productos as $p): ?>
+            <?php
+            // calcula el incremento según la unidad: kg=0.25, g=100, 100g=1, unidad/bandeja=1
+            function incrementoPorUnidad($u) {
+                return match($u) { 'kg' => 0.25, 'g' => 100, default => 1 };
+            }
+            function labelUnidad($u) {
+                return match($u) { 'kg' => 'kg', 'g' => 'g', '100g' => '×100g', 'bandeja' => 'bandeja', default => 'ud' };
+            }
+            foreach ($productos as $p):
+                $unidad = $p['unidad_medida'] ?? 'unidad';
+                $paso   = incrementoPorUnidad($unidad);
+                $label  = labelUnidad($unidad);
+            ?>
                 <li class="carrito-item" id="item-<?= $p['id'] ?>"
                     data-precio="<?= $p['precio_efectivo'] ?>"
-                    data-id-producto="<?= $p['id_producto'] ?>">
+                    data-id-producto="<?= $p['id_producto'] ?>"
+                    data-paso="<?= $paso ?>">
 
                     <div class="carrito-item-info">
                         <span class="carrito-item-nombre"><?= htmlspecialchars($p['nombre']) ?></span>
@@ -51,11 +64,11 @@ require __DIR__ . '/../layout/header.php';
                     </div>
 
                     <div class="carrito-item-precio">
-                        <?= number_format($p['precio_efectivo'], 2, ',', '.') ?> €/kg
+                        <?= number_format($p['precio_efectivo'], 2, ',', '.') ?> €/<?= $label ?>
                     </div>
 
                     <div class="carrito-item-cantidad">
-                        <span id="cant-<?= $p['id'] ?>"><?= $p['cantidad'] ?></span> kg
+                        <span id="cant-<?= $p['id'] ?>"><?= $p['unidad_medida'] === 'kg' ? number_format($p['cantidad'], 2, ',', '.') : (int)$p['cantidad'] ?></span> <?= $label ?>
                     </div>
 
                     <div class="carrito-item-subtotal" id="sub-<?= $p['id'] ?>">
@@ -63,14 +76,13 @@ require __DIR__ . '/../layout/header.php';
                     </div>
 
                     <div class="carrito-item-acciones">
-                        <?php // el botón de quitar solo aparece si hay más de 1 kg ?>
                         <button class="btn-menos" id="menos-<?= $p['id'] ?>"
                                 onclick="quitarUno(<?= $p['id'] ?>)"
-                                <?php if ($p['cantidad'] <= 1) echo 'style="display:none"'; ?>>
-                            -1 kg
+                                <?php if ($p['cantidad'] <= $paso) echo 'style="display:none"'; ?>>
+                            -<?= $paso ?> <?= $label ?>
                         </button>
-                        <button class="btn-mas" onclick="agregarMas(<?= $p['id'] ?>, <?= $p['id_producto'] ?>)">
-                            +1 kg
+                        <button class="btn-mas" onclick="agregarMas(<?= $p['id'] ?>, <?= $p['id_producto'] ?>, <?= $paso ?>)">
+                            +<?= $paso ?> <?= $label ?>
                         </button>
                         <button class="btn-eliminar" onclick="eliminarItem(<?= $p['id'] ?>)">
                             Eliminar

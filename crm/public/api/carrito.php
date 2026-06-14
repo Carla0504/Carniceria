@@ -45,7 +45,8 @@ if ($metodo === 'POST') {
             exit();
         }
 
-        CarritoItem::agregar($pdo, $idUsuario, $idProducto);
+        $incremento = (float) ($_POST['incremento'] ?? 1);
+        CarritoItem::agregar($pdo, $idUsuario, $idProducto, $incremento);
         $total = CarritoItem::contar($pdo, $idUsuario);
         echo json_encode(['ok' => true, 'count' => $total]);
         exit();
@@ -53,10 +54,10 @@ if ($metodo === 'POST') {
 
     if ($accion === 'actualizar') {
         $id = (int) ($_POST['id'] ?? 0);
-        $cantidad = (int) ($_POST['cantidad'] ?? 1);
+        $cantidad = (float) ($_POST['cantidad'] ?? 1);
 
-        // me aseguro de que la cantidad no baje de 1
-        if ($cantidad < 1) $cantidad = 1;
+        // me aseguro de que la cantidad no baje del incremento mínimo
+        if ($cantidad < 0.001) $cantidad = 0.001;
 
         CarritoItem::actualizar($pdo, $id, $idUsuario, $cantidad);
         $total = CarritoItem::contar($pdo, $idUsuario);

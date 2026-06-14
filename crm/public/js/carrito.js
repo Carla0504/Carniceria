@@ -22,10 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
     botones.forEach(function(btn) {
         btn.addEventListener('click', async function() {
             let idProducto = btn.dataset.id;
+            let unidad = btn.dataset.unidad || 'unidad';
+            let incremento = (unidad === 'kg') ? 0.25 : (unidad === 'g') ? 100 : 1;
 
             let formData = new FormData();
             formData.append('_action', 'agregar');
             formData.append('id_producto', idProducto);
+            formData.append('incremento', incremento);
 
             btn.disabled = true;
 

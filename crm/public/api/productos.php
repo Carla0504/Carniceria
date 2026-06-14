@@ -50,13 +50,19 @@ if ($metodo === 'POST') {
         }
     }
 
+    $unidadesValidas = ['kg', 'g', '100g', 'unidad', 'bandeja'];
+    $unidad = $_POST['unidad_medida'] ?? 'unidad';
+    if (!in_array($unidad, $unidadesValidas)) $unidad = 'unidad';
+
     $datos = [
-        'id_seccion' => $idSeccion,
-        'nombre' => trim($_POST['nombre']),
-        'descripcion' => trim($_POST['descripcion'] ?? ''),
-        'precio' => (float)$_POST['precio'],
-        'foto' => $foto ?: null,
-        'disponible' => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
+        'id_seccion'    => $idSeccion,
+        'nombre'        => trim($_POST['nombre']),
+        'descripcion'   => trim($_POST['descripcion'] ?? ''),
+        'precio'        => (float)$_POST['precio'],
+        'unidad_medida' => $unidad,
+        'stock'         => max(0, (float)($_POST['stock'] ?? 0)),
+        'foto'          => $foto ?: null,
+        'disponible'    => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
     ];
 
     if ($accion === 'crear') {
