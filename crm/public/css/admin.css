@@ -215,4 +215,56 @@
     color: #ca8a04;
 }
 
+/* ── Mensajes de contacto ───────────────────────────── */
+.admin-mensajes {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.admin-mensajes h1 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+}
+
+.mensajes-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.mensajes-tabla th {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 2px solid #333;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.mensajes-tabla td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #2a2a2a;
+    vertical-align: top;
+}
+
+.mensajes-tabla tr.no-leido td {
+    background: rgba(255,255,255,0.03);
+    font-weight: 500;
+}
+
+.mensajes-tabla a {
+    color: #d4a96a;
+    text-decoration: none;
+}
+
+.leido-tag {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.mensajes-vacio {
+    color: #666;
+    margin-top: 2rem;
+}
+
 .btn-admin-promo-delete:hover { background: rgba(234,179,8,0.16); }

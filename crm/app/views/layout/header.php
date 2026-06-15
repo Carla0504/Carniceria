@@ -44,6 +44,10 @@ $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
     <?php if (isset($_SESSION['user'])): ?>
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
 
+      <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
+      <li><a href="/Carniceria/crm/app/views/admin/mensajes.php">Panel admin</a></li>
+      <?php endif; ?>
+
       <li>
         <form action="/Carniceria/crm/app/controllers/logoutController.php" method="POST" style="display:inline;">
           <button class="logout"><?= $t['nav_salir'] ?></button>
