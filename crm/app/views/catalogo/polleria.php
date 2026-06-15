@@ -54,12 +54,27 @@ require __DIR__ . '/../layout/header.php';
                 <?php if ((float)$p['stock'] <= 0): ?>
                     <span class="badge-agotado">Agotado</span>
                 <?php elseif (isset($_SESSION['user'])): ?>
-                <button class="btn-carrito"
-                        data-id="<?= $p['id'] ?>"
-                        data-unidad="<?= htmlspecialchars($p['unidad_medida'] ?? 'unidad') ?>"
-                        data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
-                    <?= $t['anadir_carrito'] ?>
-                </button>
+                <div class="carrito-accion">
+                    <?php
+                    $opciones = match($p['unidad_medida'] ?? 'unidad') {
+                        'kg'    => [0.25=>'250 g', 0.5=>'500 g', 0.75=>'750 g', 1=>'1 kg', 1.5=>'1,5 kg', 2=>'2 kg'],
+                        'g'     => [100=>'100 g', 200=>'200 g', 300=>'300 g', 500=>'500 g'],
+                        '100g'  => [1=>'×100 g', 2=>'×200 g', 3=>'×300 g', 5=>'×500 g'],
+                        default => [1=>'1 ud', 2=>'2 ud', 3=>'3 ud', 4=>'4 ud', 5=>'5 ud'],
+                    };
+                    ?>
+                    <select class="select-cantidad">
+                        <?php foreach ($opciones as $val => $label): ?>
+                        <option value="<?= $val ?>"><?= $label ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button class="btn-carrito"
+                            data-id="<?= $p['id'] ?>"
+                            data-unidad="<?= htmlspecialchars($p['unidad_medida'] ?? 'unidad') ?>"
+                            data-nombre="<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>">
+                        <?= $t['anadir_carrito'] ?>
+                    </button>
+                </div>
                 <?php else: ?>
                 <a href="/Carniceria/crm/app/views/auth/login.php" class="btn-carrito"><?= $t['anadir_carrito'] ?></a>
                 <?php endif; ?>

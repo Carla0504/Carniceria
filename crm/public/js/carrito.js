@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     botones.forEach(function(btn) {
         btn.addEventListener('click', async function() {
             let idProducto = btn.dataset.id;
-            let unidad = btn.dataset.unidad || 'unidad';
-            let incremento = (unidad === 'kg') ? 0.25 : (unidad === 'g') ? 100 : 1;
+            let selectEl = btn.closest('.carrito-accion') ? btn.closest('.carrito-accion').querySelector('.select-cantidad') : null;
+            let incremento = selectEl ? parseFloat(selectEl.value) : 1;
 
             let formData = new FormData();
             formData.append('_action', 'agregar');
