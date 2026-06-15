@@ -92,6 +92,15 @@ INSERT INTO promociones (id_producto, descripcion, precio_promocional, activa, f
 (11, 'Pollo entero de granja con descuento especial.', 4.50, 1, '2026-05-06', '2026-05-20'),
 (16, 'Paté de campaña artesano en promoción esta semana.', 2.50, 1, '2026-05-06', '2026-05-12');
 
+CREATE TABLE mensajes_contacto (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    mensaje TEXT NOT NULL,
+    leido TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE carrito_items (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT UNSIGNED NOT NULL,

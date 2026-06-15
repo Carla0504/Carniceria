@@ -1,8 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/../../../config/db.php';
 
-// proceso el formulario si se ha enviado
 $enviado = false;
 $error = false;
 
@@ -13,9 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($nombre === '' || $email === '' || $mensaje === '') {
         $error = 'Rellena todos los campos.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'El correo electrónico no es válido.';
     } else {
-        // aquí se podría enviar un correo o guardar en BD
-        // de momento solo muestro el mensaje de confirmación
+        $stmt = $pdo->prepare(
+            "INSERT INTO mensajes_contacto (nombre, email, mensaje) VALUES (?, ?, ?)"
+        );
+        $stmt->execute([$nombre, $email, $mensaje]);
         $enviado = true;
     }
 }
