@@ -40,6 +40,8 @@
                         <option value="100g">€/100g</option>
                         <option value="unidad">€/unidad</option>
                         <option value="bandeja">€/bandeja</option>
+                        <option value="pack">€/pack</option>
+                        <option value="blister">€/blíster</option>
                     </select>
                 </div>
             </div>

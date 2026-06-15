@@ -40,7 +40,7 @@ CREATE TABLE productos (
     nombre VARCHAR(200) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
-    unidad_medida ENUM('kg','g','100g','unidad','bandeja') NOT NULL DEFAULT 'unidad',
+    unidad_medida ENUM('kg','g','100g','unidad','bandeja','pack','blister') NOT NULL DEFAULT 'unidad',
     stock DECIMAL(10,3) NOT NULL DEFAULT 0,
     foto VARCHAR(255),
     disponible TINYINT(1) NOT NULL DEFAULT 1,

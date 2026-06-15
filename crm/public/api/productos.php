@@ -50,7 +50,7 @@ if ($metodo === 'POST') {
         }
     }
 
-    $unidadesValidas = ['kg', 'g', '100g', 'unidad', 'bandeja'];
+    $unidadesValidas = ['kg', 'g', '100g', 'unidad', 'bandeja', 'pack', 'blister'];
     $unidad = $_POST['unidad_medida'] ?? 'unidad';
     if (!in_array($unidad, $unidadesValidas)) $unidad = 'unidad';
 
