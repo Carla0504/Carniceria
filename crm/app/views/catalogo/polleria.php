@@ -9,7 +9,7 @@ $slug = 'polleria';
 $seccion = Producto::seccion($pdo, $slug);
 $productos = Producto::porSeccion($pdo, $seccion['id']);
 
-$titulo = 'La Dehesa — Pollería';
+$titulo = 'La Dehesa — Quesos y Especialidades';
 require __DIR__ . '/../layout/header.php';
 ?>
 
@@ -17,7 +17,7 @@ require __DIR__ . '/../layout/header.php';
 
 <div class="catalogo-header">
     <p class="secciones-tag"><?= htmlspecialchars($seccion['descripcion']) ?></p>
-    <h1>Pollería</h1>
+    <h1>Quesos y Especialidades</h1>
 </div>
 
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>

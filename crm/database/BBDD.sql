@@ -29,10 +29,10 @@ CREATE TABLE secciones (
 );
 
 INSERT INTO secciones (nombre, slug, descripcion, orden) VALUES
-('Carnicería', 'carniceria', 'Carne fresca de calidad seleccionada', 1),
-('Charcutería', 'charcuteria', 'Embutidos y productos curados', 2),
-('Pollería', 'polleria', 'Pollo, pavo y otras aves', 3),
-('Conservas', 'conservas', 'Conservas y productos en lata', 4);
+('Carnicería', 'carniceria', 'Sin conservantes ni potenciadores de sabor. Picamos la carne en el momento que nos lo pidan.', 1),
+('Charcutería y Jamones', 'charcuteria', 'Las mejores marcas españolas e italianas en embutidos artesanales y jamones de calidad.', 2),
+('Quesos y Especialidades', 'polleria', 'Quesos premiados internacionalmente, cecina de León y especialidades únicas.', 3),
+('Conservas y Bacalao', 'conservas', 'Gadus Morhua de las Islas Faroe, conservas, legumbres, vinos, picos y regañas.', 4);
 
 CREATE TABLE productos (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -49,30 +49,34 @@ CREATE TABLE productos (
 );
 
 INSERT INTO productos (id_seccion, nombre, descripcion, precio, unidad_medida, stock, foto) VALUES
--- Carnicería (precio por kg)
-(1, 'Entrecot de ternera', 'Corte jugoso de ternera nacional, ideal para plancha o barbacoa.', 18.90, 'kg', 15.000, NULL),
-(1, 'Chuletas de cerdo', 'Chuletas de cerdo ibérico con hueso, perfectas para asar.', 7.50, 'kg', 20.000, NULL),
-(1, 'Solomillo de cerdo', 'Pieza tierna y magra de cerdo, ideal para medallones.', 12.00, 'kg', 8.000, NULL),
-(1, 'Costillas de ternera', 'Costillas de ternera para horno o barbacoa, muy jugosas.', 9.80, 'kg', 12.000, NULL),
-(1, 'Hamburguesas artesanas', 'Hamburguesas elaboradas a mano con carne de ternera 100%.', 8.40, 'bandeja', 25.000, NULL),
--- Charcutería
-(2, 'Jamón ibérico de bellota', 'Jamón ibérico de bellota curado 36 meses, sabor intenso.', 65.00, 'kg', 5.000, 'jamon-iberico-bellota.png'),
-(2, 'Lomo embuchado', 'Lomo de cerdo ibérico adobado y embutido artesanalmente.', 22.50, 'unidad', 8.000, 'lomo_embuchado.png'),
-(2, 'Chorizo extra', 'Chorizo curado con pimentón de la Vera, sabor ahumado.', 11.00, 'unidad', 12.000, 'chorizo extra.png'),
-(2, 'Salchichón ibérico', 'Salchichón elaborado con carnes selectas y especias naturales.', 13.50, 'unidad', 10.000, NULL),
-(2, 'Morcilla de Burgos', 'Morcilla tradicional con arroz y cebolla, receta artesana.', 6.90, 'unidad', 15.000, NULL),
--- Pollería
-(3, 'Pollo entero', 'Pollo fresco de granja, criado en libertad. Peso aproximado 1,8 kg.', 5.90, 'unidad', 20.000, NULL),
-(3, 'Pechugas de pollo', 'Pechugas fileteadas listas para cocinar, sin piel ni hueso.', 7.20, 'kg', 10.000, NULL),
-(3, 'Muslos de pollo', 'Muslos con contramuslo, ideales para horno o guiso.', 4.50, 'kg', 8.000, NULL),
-(3, 'Pavo en filetes', 'Filetes de pavo finos, bajos en grasa y muy versátiles.', 8.00, 'kg', 6.000, NULL),
-(3, 'Alitas de pollo', 'Alitas frescas perfectas para asar o preparar en salsa.', 3.90, 'kg', 15.000, NULL),
--- Conservas (precio por unidad)
-(4, 'Paté de campaña', 'Paté artesano elaborado con hígado de cerdo y especias.', 3.50, 'unidad', 30.000, NULL),
-(4, 'Morcilla en conserva', 'Morcilla de calidad envasada al vacío para mayor durabilidad.', 4.20, 'unidad', 20.000, NULL),
-(4, 'Lomo en manteca', 'Lomo de cerdo ibérico conservado en manteca colorá tradicional.', 6.80, 'unidad', 15.000, NULL),
-(4, 'Chicharrones', 'Chicharrones de cerdo crujientes, elaborados de forma artesanal.', 5.10, 'unidad', 25.000, NULL),
-(4, 'Chistorra en aceite', 'Chistorra navarra en conserva de aceite de oliva virgen extra.', 4.75, 'unidad', 18.000, NULL);
+-- Carnicería
+(1, 'Filete de 1ª', 'Ternera de primera calidad. Sin conservantes ni potenciadores de sabor, picamos la carne en el momento que nos lo pidan.', 17.99, 'kg', 20.000, 'filete_primera.jpg'),
+(1, 'Entrecot', 'Corte premium de ternera, jugoso y con mucho sabor. Sin conservantes.', 34.99, 'kg', 8.000, 'entrecot.jpg'),
+(1, 'Solomillo', 'El corte más tierno y valorado. Carne de primera sin conservantes.', 44.99, 'kg', 5.000, 'solomillo.jpg'),
+(1, 'Cantero de cadera', 'Pieza noble de ternera, perfecta para filetear o hacer a la plancha.', 27.99, 'kg', 10.000, 'cantero_cadera.jpg'),
+(1, 'Chuletas de cerdo', 'Chuletas de cerdo frescas, perfectas para plancha o barbacoa.', 8.49, 'kg', 18.000, 'chuletas_cerdo.jpg'),
+(1, 'Costillas frescas', 'Costillas de cerdo frescas para horno, barbacoa o guiso.', 11.99, 'kg', 15.000, 'costillas_frescas.jpg'),
+(1, 'Costillas adobadas oreadas', 'Costillas adobadas y oreadas en obrador propio, listas para asar directamente.', 17.49, 'kg', 12.000, 'costillas_adobadas.jpg'),
+(1, 'Migas', 'Migas de matanza elaboradas artesanalmente en obrador propio. Sin conservantes.', 17.99, 'kg', 10.000, 'migas.jpg'),
+-- Charcutería y Jamones
+(2, 'Lomos', 'Lomo embuchado artesanal seleccionado de las mejores marcas españolas.', 24.99, 'kg', 12.000, 'lomos.jpg'),
+(2, 'Chicharrones', 'Chicharrones elaborados artesanalmente, sin conservantes ni aditivos.', 15.99, 'kg', 15.000, 'chicharrones.jpg'),
+(2, 'Mortadela trufada italiana', 'Mortadela italiana artesanal con trufa, de las mejores marcas del país.', 19.99, 'kg', 10.000, 'mortadela_trufada.jpg'),
+(2, 'Cecina de León con D.O.', 'Cecina de vacuno con Denominación de Origen de León, curación mínima 7 meses.', 54.99, 'kg', 5.000, 'cecina_leon.jpg'),
+(2, 'Jamón Reserva', 'El perfecto para el bocadillo. Centro de jamón reserva con más de 15 meses de curación, partido con máquina.', 34.99, 'kg', 8.000, 'jamon_reserva.jpg'),
+(2, 'Jamón Serrano Segoviano', 'El rey de los serranos con pata blanca. Segoviano, más de 24 meses de curación, 50% raza DUROC, tratado desde origen a la antigua usanza (chamuscado).', 69.99, 'kg', 5.000, 'jamon_serrano.jpg'),
+(2, 'Jamón Ibérico 50%', 'De Salamanca. Cerdo ibérico 50% de raza ibérica, con al menos 30 meses de curación.', 83.99, 'kg', 3.000, 'jamon_iberico.jpg'),
+(2, 'Jabugo D.O. 100% Ibérico Bellota', 'El rey de reyes. Con D.O. Jabugo, 100% raza ibérica y de bellota, más de 36 meses de curación.', 199.99, 'kg', 2.000, 'jabugo.jpg'),
+-- Quesos y Especialidades
+(3, 'Queso con D.O.', 'Queso con Denominación de Origen, seleccionado de los mejores queseros artesanales.', 24.99, 'kg', 8.000, 'queso_do.jpg'),
+(3, 'Quesos artesanales', 'Selección de quesos artesanales de producción limitada, cambia según temporada.', 24.99, 'kg', 10.000, 'quesos_artesanales.jpg'),
+(3, 'Queso especial de romero', 'Ganador de premios internacionales en su categoría. Corteza natural de romero, elaboración artesanal.', 30.00, 'kg', 5.000, 'queso_romero.jpg'),
+(3, 'Queso especial con trufa', 'Galardonado a nivel internacional. Queso con trufa de producción artesanal y limitada.', 30.00, 'kg', 4.000, 'queso_trufa.jpg'),
+(3, 'Queso especial al pesto', 'Premiado internacionalmente. Queso al pesto de elaboración artesanal y curación controlada.', 30.00, 'kg', 4.000, 'queso_pesto.jpg'),
+(3, 'Gildas con cecina y queso', 'Gildas artesanas con cecina de León D.O. y queso curado. Listas para comer.', 6.99, 'unidad', 25.000, 'gildas.jpg'),
+-- Conservas y Bacalao
+(4, 'Gadus Morhua — Bacalao Islas Faroe', 'El mayor bacalao del mundo. Procedente de las Islas Faroe, pescado con anzuelo de forma sostenible y respetuosa.', 35.99, 'kg', 10.000, 'gadus_morhua.jpg'),
+(4, 'Mejillones cocidos', 'Mejillones cocidos al natural, listos para comer.', 11.99, 'unidad', 30.000, 'mejillones_cocidos.jpg');
 
 CREATE TABLE promociones (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -86,11 +90,8 @@ CREATE TABLE promociones (
 );
 
 INSERT INTO promociones (id_producto, descripcion, precio_promocional, activa, fecha_inicio, fecha_fin) VALUES
-(1, 'Oferta de temporada en entrecot de ternera nacional.', 14.90, 1, '2026-05-01', '2026-05-31'),
-(5, 'Hamburguesas artesanas con descuento especial esta semana.', 6.50, 1, '2026-05-06', '2026-05-12'),
-(6, 'Jamón ibérico de bellota a precio reducido por tiempo limitado.', 55.00, 1, '2026-05-01', '2026-05-31'),
-(11, 'Pollo entero de granja con descuento especial.', 4.50, 1, '2026-05-06', '2026-05-20'),
-(16, 'Paté de campaña artesano en promoción esta semana.', 2.50, 1, '2026-05-06', '2026-05-12');
+(2, 'Entrecot de ternera en oferta de temporada.', 29.99, 1, '2026-06-01', '2026-06-30'),
+(13, 'Jamón Reserva con descuento especial este mes.', 28.99, 1, '2026-06-01', '2026-06-30');
 
 CREATE TABLE mensajes_contacto (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
