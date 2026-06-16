@@ -164,6 +164,30 @@ async function quitarPromo(id) {
     }
 }
 
+async function actualizarStock(id, btn) {
+    let input = btn.previousElementSibling;
+    let nuevoStock = parseInt(input.value);
+
+    if (isNaN(nuevoStock)) return;
+
+    let formData = new FormData();
+    formData.append('_action', 'actualizar_stock');
+    formData.append('id', id);
+    formData.append('stock', nuevoStock);
+
+    try {
+        let respuesta = await fetch(urlProductos, { method: 'POST', body: formData });
+        let resultado = await respuesta.json();
+        if (resultado.ok) {
+            let textoOriginal = btn.textContent;
+            btn.textContent = '✓';
+            setTimeout(function() { btn.textContent = textoOriginal; }, 1500);
+        }
+    } catch (e) {
+        console.error('Error al actualizar stock:', e);
+    }
+}
+
 formularioPromo.addEventListener('submit', async function(e) {
     e.preventDefault();
     let formData = new FormData(formularioPromo);

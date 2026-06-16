@@ -94,6 +94,10 @@ require __DIR__ . '/../layout/header.php';
                         <button class="btn-admin-promo"
                                 onclick="abrirModalCrearPromo(<?= $p['id'] ?>)">Añadir oferta</button>
                     <?php endif; ?>
+                    <div class="admin-stock-inline">
+                        <input type="number" class="input-stock-inline" value="<?= (float)$p['stock'] ?>" step="1" min="0">
+                        <button class="btn-admin-stock" onclick="actualizarStock(<?= $p['id'] ?>, this)">Stock</button>
+                    </div>
                 </div>
                 <?php endif; ?>
             </div>

@@ -32,6 +32,13 @@ if ($metodo === 'POST') {
         exit();
     }
 
+    if ($accion === 'actualizar_stock') {
+        $stock = max(0, (float)($_POST['stock'] ?? 0));
+        Producto::actualizarStock($pdo, (int)$_POST['id'], $stock);
+        echo json_encode(['ok' => true]);
+        exit();
+    }
+
     // necesito el slug de la sección para guardar la foto en la carpeta correcta
     $idSeccion = (int)$_POST['id_seccion'];
     $stmt = $pdo->prepare("SELECT slug FROM secciones WHERE id = ? LIMIT 1");
