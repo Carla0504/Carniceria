@@ -89,7 +89,7 @@ async function eliminarProducto(id, card) {
     }
 }
 
-// ── Modal de promociones ─────────────────────────────────────────────────────
+// modal de promociones
 let overlayPromo = document.getElementById('modal-overlay-promo');
 let formularioPromo = document.getElementById('form-promo');
 let tituloModalPromo = document.getElementById('modal-titulo-promo');

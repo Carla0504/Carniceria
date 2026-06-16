@@ -55,14 +55,14 @@ if ($metodo === 'POST') {
     if (!in_array($unidad, $unidadesValidas)) $unidad = 'unidad';
 
     $datos = [
-        'id_seccion'    => $idSeccion,
-        'nombre'        => trim($_POST['nombre']),
-        'descripcion'   => trim($_POST['descripcion'] ?? ''),
-        'precio'        => (float)$_POST['precio'],
+        'id_seccion' => $idSeccion,
+        'nombre' => trim($_POST['nombre']),
+        'descripcion' => trim($_POST['descripcion'] ?? ''),
+        'precio' => (float)$_POST['precio'],
         'unidad_medida' => $unidad,
-        'stock'         => max(0, (float)($_POST['stock'] ?? 0)),
-        'foto'          => $foto ?: null,
-        'disponible'    => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
+        'stock' => max(0, (float)($_POST['stock'] ?? 0)),
+        'foto' => $foto ?: null,
+        'disponible' => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
     ];
 
     if ($accion === 'crear') {

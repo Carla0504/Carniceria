@@ -32,7 +32,7 @@ if ($stmt->fetch()) {
     exit();
 }
 
-// Insertar usuario
+// inserto el usuario con la contraseña cifrada
 $hash = password_hash($password, PASSWORD_BCRYPT);
 $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, 'cliente')");
 $stmt->execute([$nombre, $email, $hash]);

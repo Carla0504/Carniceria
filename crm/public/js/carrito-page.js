@@ -75,6 +75,7 @@ async function quitarUno(id) {
 
     if (cantidadActual <= paso) return;
 
+    // sin esto da 0.30000000000000004 por culpa del float
     let nuevaCantidad = Math.round((cantidadActual - paso) * 1000) / 1000;
 
     let formData = new FormData();
@@ -104,7 +105,6 @@ async function quitarUno(id) {
     }
 }
 
-// elimina el producto del carrito y lo quita del html sin recargar
 async function eliminarItem(id) {
     let formData = new FormData();
     formData.append('_action', 'eliminar');

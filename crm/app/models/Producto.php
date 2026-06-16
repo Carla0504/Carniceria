@@ -18,7 +18,7 @@ class Producto {
         return null;
     }
 
-    // devuelve los productos de una sección con su precio promocional si tiene
+    // productos de una sección, con promo activa si la tiene
     public static function porSeccion($pdo, $idSeccion) {
         $sql = "SELECT p.*, pr.id AS id_promo, pr.precio_promocional
                 FROM productos p
@@ -33,7 +33,7 @@ class Producto {
         return $stmt->fetchAll();
     }
 
-    // devuelve todos los productos con el nombre de su sección
+    // para la vista de admin (necesito el nombre de la sección)
     public static function todos($pdo) {
         $sql = "SELECT p.*, s.nombre AS seccion_nombre, s.slug AS seccion_slug
                 FROM productos p

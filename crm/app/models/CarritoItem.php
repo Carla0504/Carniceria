@@ -2,9 +2,7 @@
 
 class CarritoItem {
 
-    // devuelve todos los productos del carrito de un usuario
-    // hago un join con productos y secciones para tener el nombre y la sección
-    // y otro join con promociones para saber si tiene precio rebajado
+    // saco los items con nombre, sección y precio de promo si tiene
     public static function porUsuario($pdo, $idUsuario) {
         $sql = "SELECT ci.id, ci.cantidad,
                        p.id AS id_producto, p.nombre, p.precio, p.unidad_medida,
