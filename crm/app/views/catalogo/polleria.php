@@ -16,8 +16,8 @@ require __DIR__ . '/../layout/header.php';
 <link rel="stylesheet" href="/Carniceria/crm/public/css/catalogo.css">
 
 <div class="catalogo-header">
-    <p class="secciones-tag"><?= htmlspecialchars($seccion['descripcion']) ?></p>
-    <h1>Quesos y Especialidades</h1>
+    <p class="secciones-tag"><?= htmlspecialchars(($idioma === 'en' && !empty($seccion['descripcion_en'])) ? $seccion['descripcion_en'] : $seccion['descripcion']) ?></p>
+    <h1><?= $idioma === 'en' ? 'Cheeses & Specialities' : 'Quesos y Especialidades' ?></h1>
 </div>
 
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
@@ -28,20 +28,24 @@ require __DIR__ . '/../layout/header.php';
 
 <div class="catalogo-grid">
     <?php foreach ($productos as $p): ?>
-        <?php $enPromo = $p['precio_promocional'] != null; ?>
+        <?php
+        $enPromo        = $p['precio_promocional'] != null;
+        $nombre_mostrar = ($idioma === 'en' && !empty($p['nombre_en'])) ? $p['nombre_en'] : $p['nombre'];
+        $desc_mostrar   = ($idioma === 'en' && !empty($p['descripcion_en'])) ? $p['descripcion_en'] : $p['descripcion'];
+        ?>
         <div class="producto-card" id="card-<?= $p['id'] ?>">
             <div class="producto-foto">
                 <?php if ($p['foto']): ?>
                     <img src="/Carniceria/crm/public/img/productos/polleria/<?= htmlspecialchars($p['foto']) ?>"
-                         alt="<?= htmlspecialchars($p['nombre']) ?>">
+                         alt="<?= htmlspecialchars($nombre_mostrar) ?>">
                 <?php endif; ?>
                 <?php if ($enPromo): ?>
                     <span class="badge-oferta"><?= $t['badge_oferta'] ?></span>
                 <?php endif; ?>
             </div>
             <div class="producto-info">
-                <h3><?= htmlspecialchars($p['nombre']) ?></h3>
-                <p><?= htmlspecialchars($p['descripcion']) ?></p>
+                <h3><?= htmlspecialchars($nombre_mostrar) ?></h3>
+                <p><?= htmlspecialchars($desc_mostrar) ?></p>
                 <div class="producto-precio">
                     <?php if ($enPromo): ?>
                         <span class="precio-original"><?= number_format($p['precio'], 2, ',', '.') ?> €</span>
@@ -52,7 +56,7 @@ require __DIR__ . '/../layout/header.php';
                     <span class="precio-kg">/<?= htmlspecialchars($p['unidad_medida'] ?? 'unidad') ?></span>
                 </div>
                 <?php if ((float)$p['stock'] <= 0): ?>
-                    <span class="badge-agotado">Agotado</span>
+                    <span class="badge-agotado"><?= $t['badge_agotado'] ?></span>
                 <?php elseif (isset($_SESSION['user'])): ?>
                 <div class="carrito-accion">
                     <?php

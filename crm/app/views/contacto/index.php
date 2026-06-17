@@ -4,17 +4,17 @@ session_start();
 require_once __DIR__ . '/../../../config/db.php';
 
 $enviado = false;
-$error = false;
+$error   = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nombre'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $nombre  = trim($_POST['nombre'] ?? '');
+    $email   = trim($_POST['email'] ?? '');
     $mensaje = trim($_POST['mensaje'] ?? '');
 
     if ($nombre === '' || $email === '' || $mensaje === '') {
-        $error = 'Rellena todos los campos.';
+        $error = 'campos';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'El correo electrónico no es válido.';
+        $error = 'email';
     } else {
         $stmt = $pdo->prepare(
             "INSERT INTO mensajes_contacto (nombre, email, mensaje) VALUES (?, ?, ?)"
@@ -24,32 +24,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$titulo = 'La Dehesa — Contacto';
+$_pre_idioma = (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en']))
+    ? $_GET['lang']
+    : ($_SESSION['lang'] ?? 'es');
+$titulo = 'La Dehesa — ' . ($_pre_idioma === 'en' ? 'Contact' : 'Contacto');
 require __DIR__ . '/../layout/header.php';
 ?>
 <link rel="stylesheet" href="/Carniceria/crm/public/css/contacto.css">
 
 <div class="contacto-page">
     <div class="contacto-info">
-        <h1>Contacto</h1>
-        <p>¿Tienes alguna pregunta o quieres hacer un encargo especial? Escríbenos y te respondemos lo antes posible.</p>
+        <h1><?= $t['contacto_h1'] ?></h1>
+        <p><?= $t['contacto_intro'] ?></p>
 
         <ul class="contacto-datos">
             <li>
-                <span class="dato-label">Dirección</span>
+                <span class="dato-label"><?= $t['contacto_dir_label'] ?></span>
                 <span>Calle Seis de Diciembre, Aravaca (Madrid)</span>
             </li>
             <li>
-                <span class="dato-label">Teléfono</span>
+                <span class="dato-label"><?= $t['contacto_tel_label'] ?></span>
                 <span>91 234 56 78</span>
             </li>
             <li>
-                <span class="dato-label">Correo</span>
+                <span class="dato-label"><?= $t['contacto_email_label'] ?></span>
                 <span>info@ladehesa.es</span>
             </li>
             <li>
-                <span class="dato-label">Horario</span>
-                <span>Lun – Vie: 9:00 – 14:00 y 17:00 – 20:30<br>Sábados: 9:00 – 14:00<br>Domingos: cerrado</span>
+                <span class="dato-label"><?= $t['contacto_horario_label'] ?></span>
+                <span><?= $t['footer_horario_semana'] ?><br><?= $t['footer_horario_sabado'] ?><br><?= $t['footer_horario_domingo'] ?></span>
             </li>
         </ul>
     </div>
@@ -57,35 +60,35 @@ require __DIR__ . '/../layout/header.php';
     <div class="contacto-formulario">
         <?php if ($enviado): ?>
             <div class="contacto-exito">
-                <p>Mensaje enviado. ¡Gracias por contactarnos!</p>
+                <p><?= $t['contacto_exito'] ?></p>
             </div>
         <?php else: ?>
             <?php if ($error): ?>
-                <p class="contacto-error"><?= htmlspecialchars($error) ?></p>
+                <p class="contacto-error"><?= $t['contacto_error_' . $error] ?></p>
             <?php endif; ?>
 
             <form method="POST" action="">
                 <div class="campo">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre"><?= $t['contacto_nombre_label'] ?></label>
                     <input type="text" id="nombre" name="nombre"
                            value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>"
-                           placeholder="Tu nombre" required>
+                           placeholder="<?= $t['contacto_placeholder_nombre'] ?>" required>
                 </div>
 
                 <div class="campo">
-                    <label for="email">Correo electrónico</label>
+                    <label for="email"><?= $t['contacto_email_form_label'] ?></label>
                     <input type="email" id="email" name="email"
                            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
                            placeholder="tu@correo.com" required>
                 </div>
 
                 <div class="campo">
-                    <label for="mensaje">Mensaje</label>
+                    <label for="mensaje"><?= $t['contacto_mensaje_label'] ?></label>
                     <textarea id="mensaje" name="mensaje" rows="5"
-                              placeholder="Escribe tu mensaje aquí..."><?= htmlspecialchars($_POST['mensaje'] ?? '') ?></textarea>
+                              placeholder="<?= $t['contacto_placeholder_msg'] ?>"><?= htmlspecialchars($_POST['mensaje'] ?? '') ?></textarea>
                 </div>
 
-                <button type="submit" class="btn-enviar">Enviar mensaje</button>
+                <button type="submit" class="btn-enviar"><?= $t['contacto_enviar'] ?></button>
             </form>
         <?php endif; ?>
     </div>

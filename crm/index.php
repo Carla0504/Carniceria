@@ -33,25 +33,25 @@ $imagenesCarrusel = glob(__DIR__ . '/public/img/carrusel/*.{jpg,jpeg,png,webp}',
   <div class="secciones-grid">
     <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="seccion-card">
       <div class="seccion-icon">🥩</div>
-      <h3>Carnicería</h3>
+      <h3><?= $t['nav_carniceria'] ?></h3>
       <p><?= $t['card_carniceria_desc'] ?></p>
       <span class="seccion-link"><?= $t['ver_productos'] ?></span>
     </a>
     <a href="/Carniceria/crm/app/views/catalogo/charcuteria.php" class="seccion-card">
       <div class="seccion-icon">🍖</div>
-      <h3>Charcutería</h3>
+      <h3><?= $t['nav_charcuteria'] ?></h3>
       <p><?= $t['card_charcuteria_desc'] ?></p>
       <span class="seccion-link"><?= $t['ver_productos'] ?></span>
     </a>
     <a href="/Carniceria/crm/app/views/catalogo/polleria.php" class="seccion-card">
-      <div class="seccion-icon">🍗</div>
-      <h3>Pollería</h3>
-      <p><?= $t['card_polleria_desc'] ?></p>
+      <div class="seccion-icon">🧀</div>
+      <h3><?= $t['nav_quesos'] ?></h3>
+      <p><?= $t['card_quesos_desc'] ?></p>
       <span class="seccion-link"><?= $t['ver_productos'] ?></span>
     </a>
     <a href="/Carniceria/crm/app/views/catalogo/conservas.php" class="seccion-card">
       <div class="seccion-icon">🥫</div>
-      <h3>Conservas</h3>
+      <h3><?= $t['nav_conservas'] ?></h3>
       <p><?= $t['card_conservas_desc'] ?></p>
       <span class="seccion-link"><?= $t['ver_productos'] ?></span>
     </a>

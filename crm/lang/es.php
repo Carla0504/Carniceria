@@ -2,6 +2,10 @@
 return [
     // navegación
     'nav_inicio' => 'Inicio',
+    'nav_carniceria' => 'Carnicería',
+    'nav_charcuteria' => 'Charcutería',
+    'nav_quesos' => 'Quesos',
+    'nav_conservas' => 'Conservas',
     'nav_imagenes' => 'Imágenes',
     'nav_contacto' => 'Contacto',
     'nav_iniciar_sesion' => 'Iniciar sesión',
@@ -17,7 +21,7 @@ return [
     'secciones_titulo' => 'Lo que encontrarás',
     'card_carniceria_desc' => 'Ternera, cerdo y cordero de primera calidad, cortado al momento.',
     'card_charcuteria_desc' => 'Jamones ibéricos, embutidos y productos curados artesanos.',
-    'card_polleria_desc' => 'Pollo, pavo y otras aves frescas de granja, criadas en libertad.',
+    'card_quesos_desc' => 'Quesos premiados internacionalmente, cecina de León y especialidades únicas.',
     'card_conservas_desc' => 'Patés, embutidos en conserva y productos tradicionales de calidad.',
     'ver_productos' => 'Ver productos →',
 
@@ -37,9 +41,67 @@ return [
     'localizacion_tag' => 'Localización',
     'localizacion_titulo' => 'Encuéntranos',
 
+    // galería
+    'galeria_titulo' => 'Imágenes',
+
+    // contacto
+    'contacto_titulo'             => 'Contacto',
+    'contacto_h1'                 => 'Contacto',
+    'contacto_intro'              => '¿Tienes alguna pregunta o quieres hacer un encargo especial? Escríbenos y te respondemos lo antes posible.',
+    'contacto_dir_label'          => 'Dirección',
+    'contacto_tel_label'          => 'Teléfono',
+    'contacto_email_label'        => 'Correo',
+    'contacto_horario_label'      => 'Horario',
+    'contacto_nombre_label'       => 'Nombre',
+    'contacto_email_form_label'   => 'Correo electrónico',
+    'contacto_mensaje_label'      => 'Mensaje',
+    'contacto_placeholder_nombre' => 'Tu nombre',
+    'contacto_placeholder_msg'    => 'Escribe tu mensaje aquí...',
+    'contacto_enviar'             => 'Enviar mensaje',
+    'contacto_exito'              => 'Mensaje enviado. ¡Gracias por contactarnos!',
+    'contacto_error_campos'       => 'Rellena todos los campos.',
+    'contacto_error_email'        => 'El correo electrónico no es válido.',
+
+    // login
+    'login_titulo'              => 'Iniciar sesión — La Dehesa',
+    'login_h1'                  => 'Bienvenido de nuevo',
+    'login_subtitle'            => 'Inicia sesión en tu cuenta',
+    'login_email_label'         => 'Correo electrónico',
+    'login_pass_label'          => 'Contraseña',
+    'login_remember'            => 'Recordarme',
+    'login_forgot'              => '¿Olvidaste tu contraseña?',
+    'login_btn'                 => 'Iniciar sesión',
+    'login_no_cuenta'           => '¿No tienes cuenta?',
+    'login_registrate'          => 'Regístrate gratis',
+    'login_error_campos'        => 'Rellena todos los campos.',
+    'login_error_credenciales'  => 'Correo o contraseña incorrectos.',
+
+    // registro
+    'register_titulo'                => 'Crear cuenta — La Dehesa',
+    'register_h1'                    => 'Crear cuenta',
+    'register_subtitle'              => 'Regístrate para empezar',
+    'register_nombre_label'          => 'Nombre completo',
+    'register_nombre_placeholder'    => 'Juan García',
+    'register_email_label'           => 'Correo electrónico',
+    'register_pass_label'            => 'Contraseña',
+    'register_pass_placeholder'      => 'Mínimo 8 caracteres',
+    'register_pass_confirm_label'    => 'Confirmar contraseña',
+    'register_pass_confirm_ph'       => 'Repite tu contraseña',
+    'register_terms'                 => 'Acepto los',
+    'register_terms_link'            => 'términos y condiciones',
+    'register_btn'                   => 'Crear cuenta',
+    'register_ya_cuenta'             => '¿Ya tienes cuenta?',
+    'register_login_link'            => 'Inicia sesión',
+    'register_error_campos'          => 'Rellena todos los campos.',
+    'register_error_passwords'       => 'Las contraseñas no coinciden.',
+    'register_error_longitud'        => 'La contraseña debe tener al menos 8 caracteres.',
+    'register_error_existe'          => 'Este correo ya está registrado.',
+    'register_error_generico'        => 'Ha ocurrido un error. Inténtalo de nuevo.',
+
     // catálogo
     'anadir_carrito' => 'Añadir al carrito',
     'badge_oferta' => 'Oferta',
+    'badge_agotado' => 'Agotado',
 
     // carrito
     'carrito_titulo' => 'Tu carrito',

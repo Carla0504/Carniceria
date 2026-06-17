@@ -1,10 +1,18 @@
-<?php header('Content-Type: text/html; charset=utf-8'); ?>
+<?php
+session_start();
+header('Content-Type: text/html; charset=utf-8');
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
+    $_SESSION['lang'] = $_GET['lang'];
+}
+$idioma = $_SESSION['lang'] ?? 'es';
+$t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= $idioma ?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear cuenta — La Dehesa</title>
+    <title><?= $t['register_titulo'] ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../public/css/auth.css">
@@ -12,59 +20,54 @@
   <body>
     <div class="card">
       <p class="card-logo">La Dehesa</p>
-      <h1>Crear cuenta</h1>
-      <p class="subtitle">Regístrate para empezar</p>
+      <h1><?= $t['register_h1'] ?></h1>
+      <p class="subtitle"><?= $t['register_subtitle'] ?></p>
       <?php if (!empty($_GET['error'])): ?>
         <p class="error-msg">
           <?php
             $e = $_GET['error'];
-            if ($e === 'campos') {
-                echo 'Rellena todos los campos.';
-            } else if ($e === 'passwords') {
-                echo 'Las contraseñas no coinciden.';
-            } else if ($e === 'longitud') {
-                echo 'La contraseña debe tener al menos 8 caracteres.';
-            } else if ($e === 'existe') {
-                echo 'Este correo ya está registrado.';
-            } else {
-                echo 'Ha ocurrido un error. Inténtalo de nuevo.';
-            }
+            if ($e === 'campos')    echo $t['register_error_campos'];
+            elseif ($e === 'passwords') echo $t['register_error_passwords'];
+            elseif ($e === 'longitud')  echo $t['register_error_longitud'];
+            elseif ($e === 'existe')    echo $t['register_error_existe'];
+            else                        echo $t['register_error_generico'];
           ?>
         </p>
       <?php endif; ?>
       <form action="../../controllers/registerController.php" method="POST">
         <div class="field">
-          <label for="name">Nombre completo</label>
+          <label for="name"><?= $t['register_nombre_label'] ?></label>
           <div class="input-wrap">
-            <input type="text" id="name" name="name" placeholder="Juan García" autocomplete="name" required>
+            <input type="text" id="name" name="name" placeholder="<?= $t['register_nombre_placeholder'] ?>" autocomplete="name" required>
           </div>
         </div>
         <div class="field">
-          <label for="email">Correo electrónico</label>
+          <label for="email"><?= $t['register_email_label'] ?></label>
           <div class="input-wrap">
             <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
           </div>
         </div>
         <div class="field">
-          <label for="password">Contraseña</label>
+          <label for="password"><?= $t['register_pass_label'] ?></label>
           <div class="input-wrap">
-            <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" required>
+            <input type="password" id="password" name="password" placeholder="<?= $t['register_pass_placeholder'] ?>" autocomplete="new-password" required>
           </div>
         </div>
         <div class="field">
-          <label for="password_confirm">Confirmar contraseña</label>
+          <label for="password_confirm"><?= $t['register_pass_confirm_label'] ?></label>
           <div class="input-wrap">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Repite tu contraseña" autocomplete="new-password" required>
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="<?= $t['register_pass_confirm_ph'] ?>" autocomplete="new-password" required>
           </div>
         </div>
         <div class="row">
           <label class="remember">
-            <input type="checkbox" name="terms" required> Acepto los <a href="/terms" class="forgot">términos y condiciones</a>
+            <input type="checkbox" name="terms" required> <?= $t['register_terms'] ?> <a href="/terms" class="forgot"><?= $t['register_terms_link'] ?></a>
           </label>
         </div>
-        <button type="submit" class="btn-submit">Crear cuenta</button>
+        <button type="submit" class="btn-submit"><?= $t['register_btn'] ?></button>
       </form>
-      <p class="signup">¿Ya tienes cuenta? <a href="./login.php">Inicia sesión</a></p>
+      <p class="signup"><?= $t['register_ya_cuenta'] ?> <a href="./login.php"><?= $t['register_login_link'] ?></a></p>
+      <p class="lang-switch"><a href="?lang=es">ES</a> | <a href="?lang=en">EN</a></p>
     </div>
   </body>
 </html>

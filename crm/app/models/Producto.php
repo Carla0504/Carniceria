@@ -58,8 +58,10 @@ class Producto {
 
     // crea un producto nuevo
     public static function crear($pdo, $datos) {
-        $sql = "INSERT INTO productos (id_seccion, nombre, descripcion, precio, unidad_medida, stock, foto, disponible)
-                VALUES (:id_seccion, :nombre, :descripcion, :precio, :unidad_medida, :stock, :foto, :disponible)";
+        $sql = "INSERT INTO productos
+                    (id_seccion, nombre, nombre_en, descripcion, descripcion_en, precio, unidad_medida, stock, foto, disponible)
+                VALUES
+                    (:id_seccion, :nombre, :nombre_en, :descripcion, :descripcion_en, :precio, :unidad_medida, :stock, :foto, :disponible)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($datos);
@@ -68,7 +70,8 @@ class Producto {
     // actualiza los datos de un producto
     public static function actualizar($pdo, $id, $datos) {
         $sql = "UPDATE productos
-                SET id_seccion=:id_seccion, nombre=:nombre, descripcion=:descripcion,
+                SET id_seccion=:id_seccion, nombre=:nombre, nombre_en=:nombre_en,
+                    descripcion=:descripcion, descripcion_en=:descripcion_en,
                     precio=:precio, unidad_medida=:unidad_medida, stock=:stock,
                     foto=:foto, disponible=:disponible
                 WHERE id=:id";

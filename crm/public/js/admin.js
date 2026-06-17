@@ -49,7 +49,9 @@ async function abrirModalEditar(id) {
         document.getElementById('field-foto-actual').value = producto.foto || '';
         document.getElementById('field-seccion').value = producto.id_seccion;
         document.getElementById('field-nombre').value = producto.nombre;
+        document.getElementById('field-nombre-en').value = producto.nombre_en || '';
         document.getElementById('field-descripcion').value = producto.descripcion || '';
+        document.getElementById('field-descripcion-en').value = producto.descripcion_en || '';
         document.getElementById('field-precio').value = producto.precio;
         document.getElementById('field-unidad').value = producto.unidad_medida || 'unidad';
         document.getElementById('field-stock').value = producto.stock || 0;

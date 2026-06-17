@@ -1,8 +1,10 @@
 <?php
 session_start();
 
-
-$titulo = 'La Dehesa — Imágenes';
+$_pre_idioma = (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en']))
+    ? $_GET['lang']
+    : ($_SESSION['lang'] ?? 'es');
+$titulo = 'La Dehesa — ' . ($_pre_idioma === 'en' ? 'Gallery' : 'Imágenes');
 require __DIR__ . '/../../../app/views/layout/header.php';
 ?>
 
@@ -15,7 +17,7 @@ $archivos = array_merge($imagenes ?: [], $videos ?: []);
 ?>
 
 <div class="content">
-    <h1>Galería</h1>
+    <h1><?= $t['galeria_titulo'] ?></h1>
     <div class="galeria-grid">
         <?php foreach ($archivos as $ruta):
             $nombre = basename($ruta);

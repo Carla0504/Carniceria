@@ -19,13 +19,23 @@
                     <option value="4">Conservas</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" name="nombre" id="field-nombre" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre (ES)</label>
+                    <input type="text" name="nombre" id="field-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Nombre (EN)</label>
+                    <input type="text" name="nombre_en" id="field-nombre-en">
+                </div>
             </div>
             <div class="form-group">
-                <label>Descripción</label>
+                <label>Descripción (ES)</label>
                 <textarea name="descripcion" id="field-descripcion"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Descripción (EN)</label>
+                <textarea name="descripcion_en" id="field-descripcion-en"></textarea>
             </div>
             <div class="form-group form-row">
                 <div>
