@@ -7,16 +7,22 @@
     margin-top: 1.5rem;
 }
 
-.galeria-item img {
+.galeria-item {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.galeria-item img,
+.galeria-item video {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 8px;
     display: block;
     transition: transform 0.2s;
 }
 
-.galeria-item img:hover {
+.galeria-item img:hover,
+.galeria-item video:hover {
     transform: scale(1.03);
 }
 
