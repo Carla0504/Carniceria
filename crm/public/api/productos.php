@@ -39,6 +39,31 @@ if ($metodo === 'POST') {
         exit();
     }
 
+    if ($accion === 'recargar_lote') {
+        $items = json_decode($_POST['items'] ?? '[]', true);
+        if (!is_array($items)) {
+            echo json_encode(['error' => 'Datos inválidos']);
+            exit();
+        }
+        $nuevos_stocks = [];
+        $actualizados = 0;
+        $stmtUp = $pdo->prepare("UPDATE productos SET stock = stock + ? WHERE id = ?");
+        $stmtSel = $pdo->prepare("SELECT stock FROM productos WHERE id = ?");
+        foreach ($items as $item) {
+            $id = (int)($item['id'] ?? 0);
+            $cantidad = (float)($item['cantidad'] ?? 0);
+            if ($id > 0 && $cantidad > 0) {
+                $stmtUp->execute([$cantidad, $id]);
+                $stmtSel->execute([$id]);
+                $nuevoStock = (float)$stmtSel->fetchColumn();
+                $nuevos_stocks[] = ['id' => $id, 'stock' => number_format($nuevoStock, 3, ',', '.')];
+                $actualizados++;
+            }
+        }
+        echo json_encode(['ok' => true, 'actualizados' => $actualizados, 'nuevos_stocks' => $nuevos_stocks]);
+        exit();
+    }
+
     // necesito el slug de la sección para guardar la foto en la carpeta correcta
     $idSeccion = (int)$_POST['id_seccion'];
     $stmt = $pdo->prepare("SELECT slug FROM secciones WHERE id = ? LIMIT 1");
@@ -62,16 +87,16 @@ if ($metodo === 'POST') {
     if (!in_array($unidad, $unidadesValidas)) $unidad = 'unidad';
 
     $datos = [
-        'id_seccion'    => $idSeccion,
-        'nombre'        => trim($_POST['nombre']),
-        'nombre_en'     => trim($_POST['nombre_en'] ?? ''),
-        'descripcion'   => trim($_POST['descripcion'] ?? ''),
-        'descripcion_en'=> trim($_POST['descripcion_en'] ?? ''),
-        'precio'        => (float)$_POST['precio'],
+        'id_seccion' => $idSeccion,
+        'nombre' => trim($_POST['nombre']),
+        'nombre_en' => trim($_POST['nombre_en'] ?? ''),
+        'descripcion' => trim($_POST['descripcion'] ?? ''),
+        'descripcion_en' => trim($_POST['descripcion_en'] ?? ''),
+        'precio' => (float)$_POST['precio'],
         'unidad_medida' => $unidad,
-        'stock'         => max(0, (float)($_POST['stock'] ?? 0)),
-        'foto'          => $foto ?: null,
-        'disponible'    => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
+        'stock' => max(0, (float)($_POST['stock'] ?? 0)),
+        'foto' => $foto ?: null,
+        'disponible' => ($_POST['disponible'] ?? '0') === '1' ? 1 : 0,
     ];
 
     if ($accion === 'crear') {

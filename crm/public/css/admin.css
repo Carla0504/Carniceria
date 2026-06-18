@@ -329,3 +329,135 @@
 .input-stock-inline[type="number"] {
     -moz-appearance: textfield;
 }
+
+/* ── Recarga de stock en lote ────────────────────────── */
+.admin-stock-lote {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.admin-lote-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.admin-lote-header h1 {
+    font-family: 'Playfair Display', serif;
+}
+
+.admin-lote-desc {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.lote-seccion {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255,200,120,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.lote-seccion-header {
+    background: rgba(255,180,80,0.05);
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(255,200,120,0.08);
+}
+
+.lote-check-all {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #e5d5b8;
+    font-weight: 600;
+    user-select: none;
+}
+
+.lote-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.lote-tabla th {
+    text-align: left;
+    padding: 0.55rem 1rem;
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.lote-tabla td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #d4c9b8;
+    vertical-align: middle;
+}
+
+.lote-tabla tr:last-child td { border-bottom: none; }
+
+.lote-tabla tr:hover td { background: rgba(255,180,80,0.03); }
+
+.lote-unidad {
+    color: #6b7280;
+    font-size: 0.82rem;
+}
+
+.input-cantidad {
+    width: 90px;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid rgba(255,200,120,0.15);
+    border-radius: 6px;
+    background: rgba(255,180,80,0.04);
+    color: white;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    text-align: right;
+}
+
+.input-cantidad:focus {
+    outline: none;
+    border-color: rgba(200,100,30,0.6);
+}
+
+.input-cantidad::-webkit-outer-spin-button,
+.input-cantidad::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-cantidad[type="number"] { -moz-appearance: textfield; }
+
+.lote-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 0;
+}
+
+.lote-seleccionados {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.lote-feedback {
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.lote-ok {
+    background: rgba(34,197,94,0.1);
+    color: #86efac;
+    border: 1px solid rgba(34,197,94,0.2);
+}
+
+.lote-error {
+    background: rgba(239,68,68,0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(239,68,68,0.2);
+}

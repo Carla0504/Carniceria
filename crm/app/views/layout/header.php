@@ -45,7 +45,13 @@ $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
 
       <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
-      <li><a href="/Carniceria/crm/app/views/admin/mensajes.php">Panel admin</a></li>
+      <li>
+        <a href="/Carniceria/crm/app/views/admin/mensajes.php">Panel admin</a>
+        <ul class="submenu">
+          <li><a href="/Carniceria/crm/app/views/admin/mensajes.php">Mensajes</a></li>
+          <li><a href="/Carniceria/crm/app/views/admin/stock_lote.php">Recarga de stock</a></li>
+        </ul>
+      </li>
       <?php endif; ?>
 
       <li>

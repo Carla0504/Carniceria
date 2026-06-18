@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-$_pre_idioma = (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en']))
-    ? $_GET['lang']
-    : ($_SESSION['lang'] ?? 'es');
-$titulo = 'La Dehesa — ' . ($_pre_idioma === 'en' ? 'Gallery' : 'Imágenes');
+$langActual = $_SESSION['lang'] ?? 'es';
+if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'en')) {
+    $langActual = $_GET['lang'];
+}
+$titulo = 'La Dehesa — ' . ($langActual == 'en' ? 'Gallery' : 'Imágenes');
 require __DIR__ . '/../../../app/views/layout/header.php';
 ?>
 
@@ -12,7 +13,7 @@ require __DIR__ . '/../../../app/views/layout/header.php';
 
 <?php
 $imagenes = glob(__DIR__ . '/../../../public/img/galeria/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
-$videos   = glob(__DIR__ . '/../../../public/img/galeria/*.{mp4,webm}', GLOB_BRACE);
+$videos = glob(__DIR__ . '/../../../public/img/galeria/*.{mp4,webm}', GLOB_BRACE);
 $archivos = array_merge($imagenes ?: [], $videos ?: []);
 ?>
 
@@ -21,8 +22,8 @@ $archivos = array_merge($imagenes ?: [], $videos ?: []);
     <div class="galeria-grid">
         <?php foreach ($archivos as $ruta):
             $nombre = basename($ruta);
-            $ext    = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
-            $src    = '/Carniceria/crm/public/img/galeria/' . htmlspecialchars($nombre);
+            $ext = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
+            $src = '/Carniceria/crm/public/img/galeria/' . htmlspecialchars($nombre);
         ?>
             <div class="galeria-item">
                 <?php if (in_array($ext, ['mp4', 'webm'])): ?>

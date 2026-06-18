@@ -50,8 +50,8 @@ require __DIR__ . '/../layout/header.php';
             }
             foreach ($productos as $p):
                 $unidad = $p['unidad_medida'] ?? 'unidad';
-                $paso   = incrementoPorUnidad($unidad);
-                $label  = labelUnidad($unidad);
+                $paso = incrementoPorUnidad($unidad);
+                $label = labelUnidad($unidad);
             ?>
                 <li class="carrito-item" id="item-<?= $p['id'] ?>"
                     data-precio="<?= $p['precio_efectivo'] ?>"

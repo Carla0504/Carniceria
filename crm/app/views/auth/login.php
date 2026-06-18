@@ -1,7 +1,7 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
-if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
+if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 }
 $idioma = $_SESSION['lang'] ?? 'es';

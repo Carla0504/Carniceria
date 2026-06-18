@@ -4,11 +4,11 @@ session_start();
 require_once __DIR__ . '/../../../config/db.php';
 
 $enviado = false;
-$error   = false;
+$error = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre  = trim($_POST['nombre'] ?? '');
-    $email   = trim($_POST['email'] ?? '');
+    $nombre = trim($_POST['nombre'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     $mensaje = trim($_POST['mensaje'] ?? '');
 
     if ($nombre === '' || $email === '' || $mensaje === '') {
@@ -24,10 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$_pre_idioma = (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en']))
-    ? $_GET['lang']
-    : ($_SESSION['lang'] ?? 'es');
-$titulo = 'La Dehesa — ' . ($_pre_idioma === 'en' ? 'Contact' : 'Contacto');
+$langActual = $_SESSION['lang'] ?? 'es';
+if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'en')) {
+    $langActual = $_GET['lang'];
+}
+$titulo = 'La Dehesa — ' . ($langActual == 'en' ? 'Contact' : 'Contacto');
 require __DIR__ . '/../layout/header.php';
 ?>
 <link rel="stylesheet" href="/Carniceria/crm/public/css/contacto.css">
@@ -64,7 +65,15 @@ require __DIR__ . '/../layout/header.php';
             </div>
         <?php else: ?>
             <?php if ($error): ?>
-                <p class="contacto-error"><?= $t['contacto_error_' . $error] ?></p>
+                <p class="contacto-error">
+                    <?php
+                    if ($error == 'campos') {
+                        echo $t['contacto_error_campos'];
+                    } else {
+                        echo $t['contacto_error_email'];
+                    }
+                    ?>
+                </p>
             <?php endif; ?>
 
             <form method="POST" action="">

@@ -29,9 +29,9 @@ require __DIR__ . '/../layout/header.php';
 <div class="catalogo-grid">
     <?php foreach ($productos as $p): ?>
         <?php
-        $enPromo        = $p['precio_promocional'] != null;
+        $enPromo = $p['precio_promocional'] != null;
         $nombre_mostrar = ($idioma === 'en' && !empty($p['nombre_en'])) ? $p['nombre_en'] : $p['nombre'];
-        $desc_mostrar   = ($idioma === 'en' && !empty($p['descripcion_en'])) ? $p['descripcion_en'] : $p['descripcion'];
+        $desc_mostrar = ($idioma === 'en' && !empty($p['descripcion_en'])) ? $p['descripcion_en'] : $p['descripcion'];
         ?>
         <div class="producto-card" id="card-<?= $p['id'] ?>">
             <div class="producto-foto">
@@ -61,9 +61,9 @@ require __DIR__ . '/../layout/header.php';
                 <div class="carrito-accion">
                     <?php
                     $opciones = match($p['unidad_medida'] ?? 'unidad') {
-                        'kg'    => [0.25=>'250 g', 0.5=>'500 g', 0.75=>'750 g', 1=>'1 kg', 1.5=>'1,5 kg', 2=>'2 kg'],
-                        'g'     => [100=>'100 g', 200=>'200 g', 300=>'300 g', 500=>'500 g'],
-                        '100g'  => [1=>'×100 g', 2=>'×200 g', 3=>'×300 g', 5=>'×500 g'],
+                        'kg' => [0.25=>'250 g', 0.5=>'500 g', 0.75=>'750 g', 1=>'1 kg', 1.5=>'1,5 kg', 2=>'2 kg'],
+                        'g' => [100=>'100 g', 200=>'200 g', 300=>'300 g', 500=>'500 g'],
+                        '100g' => [1=>'×100 g', 2=>'×200 g', 3=>'×300 g', 5=>'×500 g'],
                         default => [1=>'1 ud', 2=>'2 ud', 3=>'3 ud', 4=>'4 ud', 5=>'5 ud'],
                     };
                     ?>
