@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS la_dehesa CHARACTER SET utf8mb4 COLLATE utf8mb4_un
 USE la_dehesa;
 
 DROP TABLE IF EXISTS carrito_items;
+DROP TABLE IF EXISTS pedido_items;
+DROP TABLE IF EXISTS pedidos;
 DROP TABLE IF EXISTS promociones;
 DROP TABLE IF EXISTS productos;
 DROP TABLE IF EXISTS secciones;
@@ -17,8 +19,8 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (nombre, email, password, rol) VALUES
-('Administrador', 'admin@ladehesa.es', '$2b$10$kDYN/LFcHExN925KRxcbHO2drA8Xi7cZotmJnFVLytGV7OP2elcNC', 'admin'),
-('prueba', 'prueba@gmail.com', '$2b$10$Yakq5YNFN6r9IDRtFhNUlumfiqjf/dOS0BClfCTkkCv0hCWt25AyS', 'cliente');
+('Administrador', 'adminladehesa@gmail.com', '$2b$10$kDYN/LFcHExN925KRxcbHO2drA8Xi7cZotmJnFVLytGV7OP2elcNC', 'admin'),
+('prueba', 'pruebaladehesa@gmail.com', '$2b$10$Yakq5YNFN6r9IDRtFhNUlumfiqjf/dOS0BClfCTkkCv0hCWt25AyS', 'cliente');
 
 CREATE TABLE secciones (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -103,6 +105,30 @@ CREATE TABLE mensajes_contacto (
     mensaje TEXT NOT NULL,
     leido TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pedidos (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT UNSIGNED NOT NULL,
+    estado ENUM('pendiente','en_preparacion','listo_recogida','entregado','denegado') NOT NULL DEFAULT 'pendiente',
+    motivo_denegacion TEXT,
+    total DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE pedido_items (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT UNSIGNED NOT NULL,
+    id_producto INT UNSIGNED NOT NULL,
+    nombre_producto VARCHAR(200) NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    cantidad DECIMAL(8,3) NOT NULL,
+    unidad_medida ENUM('kg','g','100g','unidad','bandeja','pack','blister') NOT NULL DEFAULT 'unidad',
+    subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES productos(id)
 );
 
 CREATE TABLE carrito_items (
