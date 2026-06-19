@@ -33,12 +33,11 @@ class CarritoItem {
         return $items;
     }
 
-    // cuenta cuántos kg hay en total en el carrito (para el badge del menú)
+    // cuenta cuántos productos distintos hay en el carrito (para el badge del menú)
     public static function contar($pdo, $idUsuario) {
-        $stmt = $pdo->prepare("SELECT SUM(cantidad) FROM carrito_items WHERE id_usuario = ?");
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM carrito_items WHERE id_usuario = ?");
         $stmt->execute([$idUsuario]);
-        $total = $stmt->fetchColumn();
-        return $total ? (int) $total : 0;
+        return (int) $stmt->fetchColumn();
     }
 
     // añade un producto al carrito; el incremento depende de la unidad de medida
