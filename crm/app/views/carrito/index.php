@@ -30,6 +30,12 @@ require __DIR__ . '/../layout/header.php';
     <h1><?= $t['carrito_titulo'] ?></h1>
     <p class="carrito-nota"><?= $t['carrito_nota'] ?></p>
 
+    <?php if (isset($_GET['pedido_ok'])): ?>
+        <div class="carrito-exito">
+            Pedido #<?= (int)$_GET['pedido_ok'] ?> creado correctamente. En cuanto lo gestionemos te avisamos.
+        </div>
+    <?php endif; ?>
+
     <?php if (empty($productos)): ?>
 
         <div class="carrito-vacio">
@@ -93,11 +99,26 @@ require __DIR__ . '/../layout/header.php';
             <?php endforeach; ?>
         </ul>
 
+        <?php if (isset($_GET['error'])): ?>
+            <p class="carrito-error">
+                <?php if ($_GET['error'] === 'stock'): ?>
+                    Stock insuficiente para: <strong><?= htmlspecialchars($_GET['producto'] ?? '') ?></strong>. Reduce la cantidad e inténtalo de nuevo.
+                <?php elseif ($_GET['error'] === 'vacio'): ?>
+                    El carrito está vacío.
+                <?php else: ?>
+                    Ha ocurrido un error al procesar el pedido. Inténtalo de nuevo.
+                <?php endif; ?>
+            </p>
+        <?php endif; ?>
+
         <div class="carrito-total-bar">
             <button class="btn-vaciar" onclick="vaciarCarrito()"><?= $t['carrito_vaciar'] ?></button>
             <div class="carrito-total">
                 <?= $t['carrito_total'] ?>: <strong id="total-valor"><?= number_format($total, 2, ',', '.') ?> €</strong>
             </div>
+            <form action="/Carniceria/crm/app/controllers/pedidoController.php" method="POST">
+                <button type="submit" class="btn-confirmar-pedido">Confirmar pedido</button>
+            </form>
         </div>
 
     <?php endif; ?>
