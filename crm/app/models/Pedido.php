@@ -36,6 +36,15 @@ class Pedido {
         }
     }
 
+    public static function todos($pdo) {
+        return $pdo->query(
+            "SELECT p.*, u.nombre AS cliente_nombre, u.email AS cliente_email
+             FROM pedidos p
+             JOIN usuarios u ON p.id_usuario = u.id
+             ORDER BY p.created_at DESC"
+        )->fetchAll();
+    }
+
     public static function porUsuario($pdo, $idUsuario) {
         $stmt = $pdo->prepare(
             "SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY created_at DESC"
