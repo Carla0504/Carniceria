@@ -150,3 +150,57 @@
     font-family: 'Playfair Display', serif;
     margin-bottom: 28px;
 }
+
+.pedido-cliente {
+    display: block;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.pedido-cliente a {
+    color: #e8c07a;
+    text-decoration: none;
+}
+
+.pedido-cliente a:hover {
+    text-decoration: underline;
+}
+
+/* modal de denegacion */
+#modal-denegar .modal {
+    background: #1e1a14;
+    border: 1px solid rgba(232,192,122,0.2);
+    border-radius: 12px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 480px;
+}
+
+#modal-denegar .modal h2 {
+    color: #e8c07a;
+    margin-bottom: 10px;
+}
+
+#modal-denegar .modal p {
+    color: #9ca3af;
+    margin-bottom: 14px;
+}
+
+#modal-denegar textarea {
+    width: 100%;
+    background: #120f0a;
+    border: 1px solid rgba(232,192,122,0.2);
+    border-radius: 6px;
+    color: #e5e7eb;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.modal-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
