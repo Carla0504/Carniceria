@@ -114,3 +114,39 @@
     font-size: 0.9rem;
     margin: 8px 0 0;
 }
+
+.pedido-acciones {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+
+.btn-estado {
+    padding: 8px 16px;
+    background: #9a2b0c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: background 0.2s;
+}
+
+.btn-estado:hover    { background: #b83510; }
+.btn-estado:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-denegar       { background: #374151; }
+.btn-denegar:hover { background: #4b5563; }
+
+.admin-pedidos {
+    max-width: 860px;
+    margin: 100px auto 60px;
+    padding: 0 20px;
+}
+
+.admin-pedidos h1 {
+    color: #e8c07a;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 28px;
+}

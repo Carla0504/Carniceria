@@ -58,4 +58,32 @@ class Pedido {
         $stmt->execute([$idPedido]);
         return $stmt->fetchAll();
     }
+
+    public static function porId($pdo, $id) {
+        $stmt = $pdo->prepare(
+            "SELECT p.*, u.nombre AS cliente_nombre, u.email AS cliente_email
+             FROM pedidos p
+             JOIN usuarios u ON p.id_usuario = u.id
+             WHERE p.id = ?"
+        );
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    public static function cambiarEstado($pdo, $id, $estado, $motivo = null) {
+        $stmt = $pdo->prepare(
+            "UPDATE pedidos SET estado = ?, motivo_denegacion = ? WHERE id = ?"
+        );
+        $stmt->execute([$estado, $motivo, $id]);
+    }
+
+    public static function restaurarStock($pdo, $idPedido) {
+        $stmt = $pdo->prepare(
+            "UPDATE productos p
+             JOIN pedido_items pi ON p.id = pi.id_producto
+             SET p.stock = p.stock + pi.cantidad
+             WHERE pi.id_pedido = ?"
+        );
+        $stmt->execute([$idPedido]);
+    }
 }
