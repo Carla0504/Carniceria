@@ -87,6 +87,12 @@ class Producto {
         $stmt->execute([$stock, $id]);
     }
 
+    // guarda la traduccion automatica en la BD para no volver a llamar a la API
+    public static function actualizarTraduccion($pdo, $id, $nombre_en, $descripcion_en) {
+        $stmt = $pdo->prepare("UPDATE productos SET nombre_en = ?, descripcion_en = ? WHERE id = ?");
+        $stmt->execute([$nombre_en, $descripcion_en, $id]);
+    }
+
     // elimina un producto por id
     public static function eliminar($pdo, $id) {
         $stmt = $pdo->prepare("DELETE FROM productos WHERE id = ?");

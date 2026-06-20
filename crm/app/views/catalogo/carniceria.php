@@ -4,6 +4,7 @@ session_start();
 
 require_once __DIR__ . '/../../../config/db.php';
 require_once __DIR__ . '/../../models/Producto.php';
+require_once __DIR__ . '/../../helpers/Traductor.php';
 
 $slug = 'carniceria';
 $seccion = Producto::seccion($pdo, $slug);
@@ -30,6 +31,13 @@ require __DIR__ . '/../layout/header.php';
     <?php foreach ($productos as $p): ?>
         <?php
         $enPromo = $p['precio_promocional'] != null;
+
+        if ($idioma === 'en' && empty($p['nombre_en'])) {
+            $p['nombre_en'] = Traductor::traducir($p['nombre']);
+            $p['descripcion_en'] = Traductor::traducir($p['descripcion']);
+            Producto::actualizarTraduccion($pdo, $p['id'], $p['nombre_en'], $p['descripcion_en']);
+        }
+
         $nombre_mostrar = ($idioma === 'en' && !empty($p['nombre_en'])) ? $p['nombre_en'] : $p['nombre'];
         $desc_mostrar = ($idioma === 'en' && !empty($p['descripcion_en'])) ? $p['descripcion_en'] : $p['descripcion'];
         ?>
