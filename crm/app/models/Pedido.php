@@ -35,4 +35,18 @@ class Pedido {
             throw $e;
         }
     }
+
+    public static function porUsuario($pdo, $idUsuario) {
+        $stmt = $pdo->prepare(
+            "SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY created_at DESC"
+        );
+        $stmt->execute([$idUsuario]);
+        return $stmt->fetchAll();
+    }
+
+    public static function items($pdo, $idPedido) {
+        $stmt = $pdo->prepare("SELECT * FROM pedido_items WHERE id_pedido = ?");
+        $stmt->execute([$idPedido]);
+        return $stmt->fetchAll();
+    }
 }
