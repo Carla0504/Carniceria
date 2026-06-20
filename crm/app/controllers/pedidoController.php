@@ -38,7 +38,7 @@ foreach ($items as $item) {
 try {
     $idPedido = Pedido::crear($pdo, $idUsuario, $items, round($total, 2));
     CarritoItem::vaciar($pdo, $idUsuario);
-    header('Location: /Carniceria/crm/app/views/carrito/index.php?pedido_ok=' . $idPedido);
+    header('Location: /Carniceria/crm/app/views/pedidos/mis_pedidos.php?ok=' . $idPedido);
 } catch (Exception $e) {
     error_log('Error al crear pedido: ' . $e->getMessage());
     header('Location: /Carniceria/crm/app/views/carrito/index.php?error=pedido');

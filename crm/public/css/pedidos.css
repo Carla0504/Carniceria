@@ -1,0 +1,116 @@
+.pedidos-page {
+    max-width: 860px;
+    margin: 100px auto 60px;
+    padding: 0 20px;
+}
+
+.pedidos-page h1 {
+    color: #e8c07a;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 28px;
+}
+
+.pedido-confirmado {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86efac;
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.pedidos-vacio {
+    text-align: center;
+    padding: 4rem 0;
+    color: #6b7280;
+}
+
+.btn-ver-catalogo {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 22px;
+    background: #9a2b0c;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.btn-ver-catalogo:hover { background: #b83510; }
+
+.pedido-card {
+    background: #1e1a14;
+    border: 1px solid rgba(232, 192, 122, 0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.pedido-num {
+    font-weight: 600;
+    color: #e8c07a;
+    margin-right: 12px;
+}
+
+.pedido-fecha {
+    color: #6b7280;
+    font-size: 0.88rem;
+}
+
+.pedido-estado {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.estado-pendiente      { background: rgba(234,179,8,0.15);   color: #fbbf24; }
+.estado-en_preparacion { background: rgba(59,130,246,0.15);  color: #60a5fa; }
+.estado-listo_recogida { background: rgba(16,185,129,0.15);  color: #34d399; }
+.estado-entregado      { background: rgba(107,114,128,0.15); color: #9ca3af; }
+.estado-denegado       { background: rgba(239,68,68,0.15);   color: #f87171; }
+
+.pedido-items {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+}
+
+.pedido-items th {
+    text-align: left;
+    padding: 8px 10px;
+    color: #9ca3af;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-weight: 500;
+}
+
+.pedido-items td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #d1d5db;
+}
+
+.pedido-items tfoot td {
+    border-top: 1px solid rgba(232,192,122,0.2);
+    border-bottom: none;
+    color: #e8c07a;
+}
+
+.pedido-motivo {
+    color: #f87171;
+    font-size: 0.9rem;
+    margin: 8px 0 0;
+}

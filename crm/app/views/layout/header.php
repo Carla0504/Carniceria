@@ -2,8 +2,9 @@
 header('Content-Type: text/html; charset=utf-8');
 // actualizo el idioma en sesión si viene por URL
 if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
-    $_SESSION['lang'] = $_GET['lang'];
+  $_SESSION['lang'] = $_GET['lang'];
 }
+
 $idioma = $_SESSION['lang'] ?? 'es';
 $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
 ?>
@@ -43,6 +44,10 @@ $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
 
     <?php if (isset($_SESSION['user'])): ?>
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
+
+      <?php if ($_SESSION['user']['rol'] !== 'admin'): ?>
+      <li><a href="/Carniceria/crm/app/views/pedidos/mis_pedidos.php">Mis pedidos</a></li>
+      <?php endif; ?>
 
       <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
       <li>
