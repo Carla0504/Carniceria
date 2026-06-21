@@ -172,6 +172,14 @@ body {
   object-fit: contain;
 }
 
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
 .hero-contenido {
   position: relative;
   z-index: 2;
@@ -184,6 +192,7 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
 
 .hero h1 {
@@ -193,15 +202,17 @@ body {
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 1.5rem;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.8);
 }
 
 .hero-desc {
-  color: #a89880;
+  color: #d4c9b8;
   font-size: 1.1rem;
   font-weight: 300;
   max-width: 520px;
   margin: 0 auto 2.5rem;
   line-height: 1.7;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
 }
 
 .btn-hero {

@@ -204,3 +204,37 @@
     gap: 10px;
     margin-top: 16px;
 }
+
+@media (max-width: 768px) {
+    .pedidos-page {
+        margin-top: 80px;
+        padding: 0 14px;
+    }
+
+    .admin-pedidos {
+        padding: 0 14px;
+    }
+
+    .pedido-card {
+        padding: 16px;
+    }
+
+    .pedido-header {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .pedido-items {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .pedido-acciones {
+        flex-direction: column;
+    }
+
+    .btn-estado {
+        width: 100%;
+        text-align: center;
+    }
+}
