@@ -46,16 +46,16 @@ $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
       <li><a href="/Carniceria/crm/app/views/carrito/index.php">🛒 <span id="cart-count"></span></a></li>
 
       <?php if ($_SESSION['user']['rol'] !== 'admin'): ?>
-      <li><a href="/Carniceria/crm/app/views/pedidos/mis_pedidos.php">Mis pedidos</a></li>
+      <li><a href="/Carniceria/crm/app/views/pedidos/mis_pedidos.php"><?= $t['nav_mis_pedidos'] ?></a></li>
       <?php endif; ?>
 
       <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
       <li>
-        <a href="/Carniceria/crm/app/views/admin/pedidos.php">Panel admin</a>
+        <a href="/Carniceria/crm/app/views/admin/pedidos.php"><?= $t['nav_panel_admin'] ?></a>
         <ul class="submenu">
-          <li><a href="/Carniceria/crm/app/views/admin/pedidos.php">Pedidos</a></li>
-          <li><a href="/Carniceria/crm/app/views/admin/mensajes.php">Mensajes</a></li>
-          <li><a href="/Carniceria/crm/app/views/admin/stock_lote.php">Recarga de stock</a></li>
+          <li><a href="/Carniceria/crm/app/views/admin/pedidos.php"><?= $t['nav_admin_pedidos'] ?></a></li>
+          <li><a href="/Carniceria/crm/app/views/admin/mensajes.php"><?= $t['nav_admin_mensajes'] ?></a></li>
+          <li><a href="/Carniceria/crm/app/views/admin/stock_lote.php"><?= $t['nav_admin_stock'] ?></a></li>
         </ul>
       </li>
       <?php endif; ?>

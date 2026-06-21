@@ -119,4 +119,73 @@ return [
     'footer_horario_semana' => 'Lun – Vie: 9:00 – 14:00 y 17:00 – 20:30',
     'footer_horario_sabado' => 'Sábados: 9:00 – 14:00',
     'footer_horario_domingo' => 'Domingos: cerrado',
+
+    // hero tag
+    'hero_tag' => 'Aravaca · Madrid · Desde 1985',
+
+    // navegación (usuario logueado)
+    'nav_mis_pedidos' => 'Mis pedidos',
+    'nav_panel_admin' => 'Panel admin',
+    'nav_admin_pedidos' => 'Pedidos',
+    'nav_admin_mensajes' => 'Mensajes',
+    'nav_admin_stock' => 'Recarga de stock',
+
+    // carrito (mensajes y botones adicionales)
+    'carrito_eliminar' => 'Eliminar',
+    'carrito_confirmar_pedido' => 'Confirmar pedido',
+    'carrito_pedido_ok' => 'Pedido #%d creado correctamente. En cuanto lo gestionemos te avisamos.',
+    'carrito_error_stock' => 'Stock insuficiente para: <strong>%s</strong>. Reduce la cantidad e inténtalo de nuevo.',
+    'carrito_error_vacio' => 'El carrito está vacío.',
+    'carrito_error_generico' => 'Ha ocurrido un error al procesar el pedido. Inténtalo de nuevo.',
+
+    // mis pedidos (cliente)
+    'pedidos_titulo' => 'Mis pedidos',
+    'pedidos_confirmado' => 'Pedido #%d realizado correctamente. En cuanto lo gestionemos te avisamos.',
+    'pedidos_vacio' => 'Todavía no has realizado ningún pedido.',
+    'pedidos_ver_catalogo' => 'Ver catálogo',
+    'pedidos_num' => 'Pedido #',
+    'pedidos_motivo' => 'Motivo:',
+    'pedidos_col_producto' => 'Producto',
+    'pedidos_col_cantidad' => 'Cantidad',
+    'pedidos_col_subtotal' => 'Subtotal',
+    'pedidos_col_total' => 'Total',
+
+    // estados de pedido
+    'estado_pendiente' => 'Pendiente',
+    'estado_en_preparacion' => 'En preparación',
+    'estado_listo_recogida' => 'Listo para recoger',
+    'estado_entregado' => 'Entregado',
+    'estado_denegado' => 'No procesado',
+
+    // catálogo (títulos h1)
+    'catalogo_h1_carniceria' => 'Carnicería',
+    'catalogo_h1_charcuteria' => 'Charcutería',
+    'catalogo_h1_quesos' => 'Quesos y Especialidades',
+    'catalogo_h1_conservas' => 'Conservas',
+
+    // catálogo (botones admin)
+    'admin_anadir_producto' => '+ Añadir producto',
+    'admin_editar' => 'Editar',
+    'admin_eliminar' => 'Eliminar',
+    'admin_editar_oferta' => 'Editar oferta',
+    'admin_quitar_oferta' => 'Quitar oferta',
+    'admin_anadir_oferta' => 'Añadir oferta',
+    'admin_guardar_stock' => 'Guardar',
+
+    // panel admin - pedidos
+    'admin_pedidos_h1' => 'Pedidos',
+    'admin_pedidos_vacio' => 'No hay pedidos todavía.',
+    'admin_btn_aceptar' => 'Aceptar - En preparación',
+    'admin_btn_denegar' => 'Denegar pedido',
+    'admin_btn_listo_recoger' => 'Marcar listo para recoger',
+    'admin_btn_entregado' => 'Marcar entregado',
+    'admin_denegar_titulo' => 'Denegar pedido',
+    'admin_denegar_p' => 'Indica el motivo para que el cliente lo reciba por correo:',
+    'admin_denegar_placeholder' => 'Ej: Stock insuficiente para completar el pedido.',
+    'admin_denegar_confirmar' => 'Confirmar denegación',
+    'admin_denegar_cancelar' => 'Cancelar',
+    'admin_denegar_error' => 'Tienes que escribir el motivo antes de confirmar.',
+    'admin_error_estado' => 'Error al cambiar el estado.',
+    'admin_error_red' => 'Error de red, inténtalo de nuevo.',
+    'admin_error_generico' => 'Ha habido un error.',
 ];

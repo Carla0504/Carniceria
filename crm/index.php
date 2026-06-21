@@ -20,7 +20,7 @@ $imagenesCarrusel = glob(__DIR__ . '/public/img/carrusel/*.{jpg,jpeg,png,webp}',
     </div>
     <?php endif; ?>
     <div class="hero-contenido">
-        <p class="hero-tag">Aravaca · Madrid · Desde 1985</p>
+        <p class="hero-tag"><?= $t['hero_tag'] ?></p>
         <h1><?= $t['hero_titulo'] ?></h1>
         <p class="hero-desc"><?= $t['hero_desc'] ?></p>
         <a href="#secciones" class="btn-hero"><?= $t['hero_btn'] ?></a>

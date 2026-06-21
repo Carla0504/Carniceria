@@ -23,35 +23,35 @@ require __DIR__ . '/../layout/header.php';
 <link rel="stylesheet" href="/Carniceria/crm/public/css/pedidos.css">
 
 <div class="pedidos-page">
-    <h1>Mis pedidos</h1>
+    <h1><?= $t['pedidos_titulo'] ?></h1>
 
     <?php if (isset($_GET['ok'])): ?>
         <div class="pedido-confirmado">
-            Pedido #<?= (int)$_GET['ok'] ?> realizado correctamente. En cuanto lo gestionemos te avisamos.
+            <?= sprintf($t['pedidos_confirmado'], (int)$_GET['ok']) ?>
         </div>
     <?php endif; ?>
 
     <?php if (empty($pedidos)): ?>
         <div class="pedidos-vacio">
-            <p>Todavia no has realizado ningun pedido.</p>
-            <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="btn-ver-catalogo">Ver catalogo</a>
+            <p><?= $t['pedidos_vacio'] ?></p>
+            <a href="/Carniceria/crm/app/views/catalogo/carniceria.php" class="btn-ver-catalogo"><?= $t['pedidos_ver_catalogo'] ?></a>
         </div>
     <?php else: ?>
         <?php foreach ($pedidos as $pedido): ?>
         <div class="pedido-card">
             <div class="pedido-header">
                 <div>
-                    <span class="pedido-num">Pedido #<?= $pedido['id'] ?></span>
+                    <span class="pedido-num"><?= $t['pedidos_num'] ?><?= $pedido['id'] ?></span>
                     <span class="pedido-fecha"><?= date('d/m/Y H:i', strtotime($pedido['created_at'])) ?></span>
                 </div>
                 <span class="pedido-estado estado-<?= $pedido['estado'] ?>">
                     <?php
                     $etiquetas = [
-                        'pendiente'      => 'Pendiente',
-                        'en_preparacion' => 'En preparacion',
-                        'listo_recogida' => 'Listo para recoger',
-                        'entregado'      => 'Entregado',
-                        'denegado'       => 'No procesado',
+                        'pendiente'      => $t['estado_pendiente'],
+                        'en_preparacion' => $t['estado_en_preparacion'],
+                        'listo_recogida' => $t['estado_listo_recogida'],
+                        'entregado'      => $t['estado_entregado'],
+                        'denegado'       => $t['estado_denegado'],
                     ];
                     echo $etiquetas[$pedido['estado']] ?? $pedido['estado'];
                     ?>
@@ -59,15 +59,15 @@ require __DIR__ . '/../layout/header.php';
             </div>
 
             <?php if ($pedido['estado'] === 'denegado' && $pedido['motivo_denegacion']): ?>
-                <p class="pedido-motivo">Motivo: <?= htmlspecialchars($pedido['motivo_denegacion']) ?></p>
+                <p class="pedido-motivo"><?= $t['pedidos_motivo'] ?> <?= htmlspecialchars($pedido['motivo_denegacion']) ?></p>
             <?php endif; ?>
 
             <table class="pedido-items">
                 <thead>
                     <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
+                        <th><?= $t['pedidos_col_producto'] ?></th>
+                        <th><?= $t['pedidos_col_cantidad'] ?></th>
+                        <th><?= $t['pedidos_col_subtotal'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,7 +84,7 @@ require __DIR__ . '/../layout/header.php';
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2"><strong>Total</strong></td>
+                        <td colspan="2"><strong><?= $t['pedidos_col_total'] ?></strong></td>
                         <td><strong><?= number_format($pedido['total'], 2, ',', '.') ?> €</strong></td>
                     </tr>
                 </tfoot>

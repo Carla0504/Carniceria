@@ -119,4 +119,73 @@ return [
     'footer_horario_semana' => 'Mon – Fri: 9:00 – 14:00 and 17:00 – 20:30',
     'footer_horario_sabado' => 'Saturdays: 9:00 – 14:00',
     'footer_horario_domingo' => 'Sundays: closed',
+
+    // hero tag
+    'hero_tag' => 'Aravaca · Madrid · Since 1985',
+
+    // navigation (logged-in user)
+    'nav_mis_pedidos' => 'My orders',
+    'nav_panel_admin' => 'Admin panel',
+    'nav_admin_pedidos' => 'Orders',
+    'nav_admin_mensajes' => 'Messages',
+    'nav_admin_stock' => 'Restock',
+
+    // cart (extra messages and buttons)
+    'carrito_eliminar' => 'Remove',
+    'carrito_confirmar_pedido' => 'Confirm order',
+    'carrito_pedido_ok' => 'Order #%d created successfully. We\'ll let you know as soon as we process it.',
+    'carrito_error_stock' => 'Not enough stock for: <strong>%s</strong>. Please reduce the quantity and try again.',
+    'carrito_error_vacio' => 'Your cart is empty.',
+    'carrito_error_generico' => 'Something went wrong with your order. Please try again.',
+
+    // my orders (client)
+    'pedidos_titulo' => 'My orders',
+    'pedidos_confirmado' => 'Order #%d placed successfully. We\'ll let you know as soon as we process it.',
+    'pedidos_vacio' => 'You haven\'t placed any orders yet.',
+    'pedidos_ver_catalogo' => 'Browse catalogue',
+    'pedidos_num' => 'Order #',
+    'pedidos_motivo' => 'Reason:',
+    'pedidos_col_producto' => 'Product',
+    'pedidos_col_cantidad' => 'Quantity',
+    'pedidos_col_subtotal' => 'Subtotal',
+    'pedidos_col_total' => 'Total',
+
+    // order statuses
+    'estado_pendiente' => 'Pending',
+    'estado_en_preparacion' => 'In preparation',
+    'estado_listo_recogida' => 'Ready for pick-up',
+    'estado_entregado' => 'Delivered',
+    'estado_denegado' => 'Declined',
+
+    // catalogue (section h1 titles)
+    'catalogo_h1_carniceria' => 'Butchery',
+    'catalogo_h1_charcuteria' => 'Charcuterie',
+    'catalogo_h1_quesos' => 'Cheeses & Specialities',
+    'catalogo_h1_conservas' => 'Preserves & Cod',
+
+    // catalogue (admin buttons)
+    'admin_anadir_producto' => '+ Add product',
+    'admin_editar' => 'Edit',
+    'admin_eliminar' => 'Delete',
+    'admin_editar_oferta' => 'Edit offer',
+    'admin_quitar_oferta' => 'Remove offer',
+    'admin_anadir_oferta' => 'Add offer',
+    'admin_guardar_stock' => 'Save',
+
+    // admin panel - orders
+    'admin_pedidos_h1' => 'Orders',
+    'admin_pedidos_vacio' => 'No orders yet.',
+    'admin_btn_aceptar' => 'Accept order',
+    'admin_btn_denegar' => 'Decline order',
+    'admin_btn_listo_recoger' => 'Mark ready for pick-up',
+    'admin_btn_entregado' => 'Mark as delivered',
+    'admin_denegar_titulo' => 'Decline order',
+    'admin_denegar_p' => 'Write a reason — the customer will receive it by email.',
+    'admin_denegar_placeholder' => 'E.g. Insufficient stock to complete the order.',
+    'admin_denegar_confirmar' => 'Decline order',
+    'admin_denegar_cancelar' => 'Cancel',
+    'admin_denegar_error' => 'You must enter a reason before confirming.',
+    'admin_error_estado' => 'Error updating the status.',
+    'admin_error_red' => 'Network error, please try again.',
+    'admin_error_generico' => 'Something went wrong.',
 ];

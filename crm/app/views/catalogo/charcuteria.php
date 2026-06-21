@@ -18,12 +18,12 @@ require __DIR__ . '/../layout/header.php';
 
 <div class="catalogo-header">
     <p class="secciones-tag"><?= htmlspecialchars(($idioma === 'en' && !empty($seccion['descripcion_en'])) ? $seccion['descripcion_en'] : $seccion['descripcion']) ?></p>
-    <h1><?= $idioma === 'en' ? 'Charcuterie & Hams' : 'Charcutería' ?></h1>
+    <h1><?= $t['catalogo_h1_charcuteria'] ?></h1>
 </div>
 
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
 <div class="admin-toolbar">
-    <button class="btn-admin-add" onclick="abrirModalCrear(<?= $seccion['id'] ?>)">+ Añadir producto</button>
+    <button class="btn-admin-add" onclick="abrirModalCrear(<?= $seccion['id'] ?>)"><?= $t['admin_anadir_producto'] ?></button>
 </div>
 <?php endif; ?>
 
@@ -72,7 +72,7 @@ require __DIR__ . '/../layout/header.php';
                         'kg' => ['0.25'=>'250 g', '0.5'=>'500 g', '0.75'=>'750 g', '1'=>'1 kg', '1.5'=>'1,5 kg', '2'=>'2 kg'],
                         'g' => ['100'=>'100 g', '200'=>'200 g', '300'=>'300 g', '500'=>'500 g'],
                         '100g' => ['1'=>'×100 g', '2'=>'×200 g', '3'=>'×300 g', '5'=>'×500 g'],
-                        default => ['1'=>'1 ud', '2'=>'2 ud', '3'=>'3 ud', '4'=>'4 ud', '5'=>'5 ud'],
+                        default => (function() use ($idioma) { $u = $idioma === 'en' ? 'u.' : 'ud'; return ['1'=>"1 $u", '2'=>"2 $u", '3'=>"3 $u", '4'=>"4 $u", '5'=>"5 $u"]; })(),
                     };
                     ?>
                     <select class="select-cantidad">
@@ -92,23 +92,23 @@ require __DIR__ . '/../layout/header.php';
                 <?php endif; ?>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['rol'] === 'admin'): ?>
                 <div class="admin-card-actions">
-                    <button class="btn-admin-edit" onclick="abrirModalEditar(<?= $p['id'] ?>)">Editar</button>
+                    <button class="btn-admin-edit" onclick="abrirModalEditar(<?= $p['id'] ?>)"><?= $t['admin_editar'] ?></button>
                     <button class="btn-admin-delete"
                             onclick="eliminarProducto(<?= $p['id'] ?>, document.getElementById('card-<?= $p['id'] ?>'))">
-                        Eliminar
+                        <?= $t['admin_eliminar'] ?>
                     </button>
                     <?php if ($p['id_promo']): ?>
                         <button class="btn-admin-promo"
-                                onclick="abrirModalEditarPromo(<?= $p['id'] ?>, <?= $p['id_promo'] ?>)">Editar oferta</button>
+                                onclick="abrirModalEditarPromo(<?= $p['id'] ?>, <?= $p['id_promo'] ?>)"><?= $t['admin_editar_oferta'] ?></button>
                         <button class="btn-admin-promo-delete"
-                                onclick="quitarPromo(<?= $p['id_promo'] ?>)">Quitar oferta</button>
+                                onclick="quitarPromo(<?= $p['id_promo'] ?>)"><?= $t['admin_quitar_oferta'] ?></button>
                     <?php else: ?>
                         <button class="btn-admin-promo"
-                                onclick="abrirModalCrearPromo(<?= $p['id'] ?>)">Añadir oferta</button>
+                                onclick="abrirModalCrearPromo(<?= $p['id'] ?>)"><?= $t['admin_anadir_oferta'] ?></button>
                     <?php endif; ?>
                     <div class="admin-stock-inline">
                         <input type="number" class="input-stock-inline" value="<?= (float)$p['stock'] ?>" step="1" min="0">
-                        <button class="btn-admin-stock" onclick="actualizarStock(<?= $p['id'] ?>, this)">Stock</button>
+                        <button class="btn-admin-stock" onclick="actualizarStock(<?= $p['id'] ?>, this)"><?= $t['admin_guardar_stock'] ?></button>
                     </div>
                 </div>
                 <?php endif; ?>

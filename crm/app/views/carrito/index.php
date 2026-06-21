@@ -32,7 +32,7 @@ require __DIR__ . '/../layout/header.php';
 
     <?php if (isset($_GET['pedido_ok'])): ?>
         <div class="carrito-exito">
-            Pedido #<?= (int)$_GET['pedido_ok'] ?> creado correctamente. En cuanto lo gestionemos te avisamos.
+            <?= sprintf($t['carrito_pedido_ok'], (int)$_GET['pedido_ok']) ?>
         </div>
     <?php endif; ?>
 
@@ -91,7 +91,7 @@ require __DIR__ . '/../layout/header.php';
                             +<?= $paso ?> <?= $label ?>
                         </button>
                         <button class="btn-eliminar" onclick="eliminarItem(<?= $p['id'] ?>)">
-                            Eliminar
+                            <?= $t['carrito_eliminar'] ?>
                         </button>
                     </div>
 
@@ -102,11 +102,11 @@ require __DIR__ . '/../layout/header.php';
         <?php if (isset($_GET['error'])): ?>
             <p class="carrito-error">
                 <?php if ($_GET['error'] === 'stock'): ?>
-                    Stock insuficiente para: <strong><?= htmlspecialchars($_GET['producto'] ?? '') ?></strong>. Reduce la cantidad e inténtalo de nuevo.
+                    <?= sprintf($t['carrito_error_stock'], htmlspecialchars($_GET['producto'] ?? '')) ?>
                 <?php elseif ($_GET['error'] === 'vacio'): ?>
-                    El carrito está vacío.
+                    <?= $t['carrito_error_vacio'] ?>
                 <?php else: ?>
-                    Ha ocurrido un error al procesar el pedido. Inténtalo de nuevo.
+                    <?= $t['carrito_error_generico'] ?>
                 <?php endif; ?>
             </p>
         <?php endif; ?>
@@ -117,7 +117,7 @@ require __DIR__ . '/../layout/header.php';
                 <?= $t['carrito_total'] ?>: <strong id="total-valor"><?= number_format($total, 2, ',', '.') ?> €</strong>
             </div>
             <form action="/Carniceria/crm/app/controllers/pedidoController.php" method="POST">
-                <button type="submit" class="btn-confirmar-pedido">Confirmar pedido</button>
+                <button type="submit" class="btn-confirmar-pedido"><?= $t['carrito_confirmar_pedido'] ?></button>
             </form>
         </div>
 

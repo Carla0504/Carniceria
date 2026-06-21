@@ -24,11 +24,11 @@ require __DIR__ . '/../layout/header.php';
 
 <div class="admin-pedidos">
     <div class="admin-lote-header">
-        <h1>Pedidos</h1>
+        <h1><?= $t['admin_pedidos_h1'] ?></h1>
     </div>
 
     <?php if (empty($pedidos)): ?>
-        <p class="mensajes-vacio">No hay pedidos todavia.</p>
+        <p class="mensajes-vacio"><?= $t['admin_pedidos_vacio'] ?></p>
     <?php else: ?>
         <?php foreach ($pedidos as $pedido): ?>
         <div class="pedido-card" id="pedido-<?= $pedido['id'] ?>">
@@ -46,11 +46,11 @@ require __DIR__ . '/../layout/header.php';
                 <span class="pedido-estado estado-<?= $pedido['estado'] ?>" id="badge-<?= $pedido['id'] ?>">
                     <?php
                     $etiquetas = [
-                        'pendiente'      => 'Pendiente',
-                        'en_preparacion' => 'En preparacion',
-                        'listo_recogida' => 'Listo para recoger',
-                        'entregado'      => 'Entregado',
-                        'denegado'       => 'No procesado',
+                        'pendiente'      => $t['estado_pendiente'],
+                        'en_preparacion' => $t['estado_en_preparacion'],
+                        'listo_recogida' => $t['estado_listo_recogida'],
+                        'entregado'      => $t['estado_entregado'],
+                        'denegado'       => $t['estado_denegado'],
                     ];
                     echo $etiquetas[$pedido['estado']] ?? $pedido['estado'];
                     ?>
@@ -60,9 +60,9 @@ require __DIR__ . '/../layout/header.php';
             <table class="pedido-items">
                 <thead>
                     <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
+                        <th><?= $t['pedidos_col_producto'] ?></th>
+                        <th><?= $t['pedidos_col_cantidad'] ?></th>
+                        <th><?= $t['pedidos_col_subtotal'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,32 +80,32 @@ require __DIR__ . '/../layout/header.php';
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2"><strong>Total</strong></td>
+                        <td colspan="2"><strong><?= $t['pedidos_col_total'] ?></strong></td>
                         <td><strong><?= number_format($pedido['total'], 2, ',', '.') ?> €</strong></td>
                     </tr>
                 </tfoot>
             </table>
 
             <?php if ($pedido['estado'] === 'denegado' && $pedido['motivo_denegacion']): ?>
-                <p class="pedido-motivo">Motivo: <?= htmlspecialchars($pedido['motivo_denegacion']) ?></p>
+                <p class="pedido-motivo"><?= $t['pedidos_motivo'] ?> <?= htmlspecialchars($pedido['motivo_denegacion']) ?></p>
             <?php endif; ?>
 
             <?php if (!in_array($pedido['estado'], ['entregado', 'denegado'])): ?>
             <div class="pedido-acciones" id="acciones-<?= $pedido['id'] ?>">
                 <?php if ($pedido['estado'] === 'pendiente'): ?>
                     <button class="btn-estado" onclick="cambiarEstado(<?= $pedido['id'] ?>, 'en_preparacion', this)">
-                        Aceptar - En preparacion
+                        <?= $t['admin_btn_aceptar'] ?>
                     </button>
                     <button class="btn-estado btn-denegar" onclick="abrirDenegar(<?= $pedido['id'] ?>)">
-                        Denegar pedido
+                        <?= $t['admin_btn_denegar'] ?>
                     </button>
                 <?php elseif ($pedido['estado'] === 'en_preparacion'): ?>
                     <button class="btn-estado" onclick="cambiarEstado(<?= $pedido['id'] ?>, 'listo_recogida', this)">
-                        Marcar listo para recoger
+                        <?= $t['admin_btn_listo_recoger'] ?>
                     </button>
                 <?php elseif ($pedido['estado'] === 'listo_recogida'): ?>
                     <button class="btn-estado" onclick="cambiarEstado(<?= $pedido['id'] ?>, 'entregado', this)">
-                        Marcar entregado
+                        <?= $t['admin_btn_entregado'] ?>
                     </button>
                 <?php endif; ?>
             </div>
@@ -118,12 +118,12 @@ require __DIR__ . '/../layout/header.php';
 <!-- Modal para denegar pedido -->
 <div id="modal-denegar" class="modal-overlay" hidden>
     <div class="modal">
-        <h2>Denegar pedido</h2>
-        <p>Indica el motivo para que el cliente lo reciba por correo:</p>
-        <textarea id="motivo-texto" rows="4" placeholder="Ej: Stock insuficiente para completar el pedido."></textarea>
+        <h2><?= $t['admin_denegar_titulo'] ?></h2>
+        <p><?= $t['admin_denegar_p'] ?></p>
+        <textarea id="motivo-texto" rows="4" placeholder="<?= htmlspecialchars($t['admin_denegar_placeholder']) ?>"></textarea>
         <div class="modal-acciones">
-            <button class="btn-admin-add" onclick="confirmarDenegar()">Confirmar denegacion</button>
-            <button class="btn btn-secondary" onclick="cerrarDenegar()">Cancelar</button>
+            <button class="btn-admin-add" onclick="confirmarDenegar()"><?= $t['admin_denegar_confirmar'] ?></button>
+            <button class="btn btn-secondary" onclick="cerrarDenegar()"><?= $t['admin_denegar_cancelar'] ?></button>
         </div>
         <p id="denegar-error" class="lote-feedback lote-error" hidden></p>
     </div>
@@ -150,12 +150,12 @@ function cambiarEstado(id, estado, btn) {
             actualizarBadge(id, estado);
             document.getElementById('acciones-' + id).remove();
         } else {
-            alert(datos.error || 'Error al cambiar el estado');
+            alert(datos.error || <?= json_encode($t['admin_error_estado']) ?>);
             btn.disabled = false;
         }
     })
     .catch(() => {
-        alert('Error de red, intentalo de nuevo');
+        alert(<?= json_encode($t['admin_error_red']) ?>);
         btn.disabled = false;
     });
 }
@@ -177,7 +177,7 @@ function confirmarDenegar() {
     const errorEl = document.getElementById('denegar-error');
 
     if (motivo === '') {
-        errorEl.textContent = 'Tienes que escribir el motivo antes de confirmar.';
+        errorEl.textContent = <?= json_encode($t['admin_denegar_error']) ?>;
         errorEl.hidden = false;
         return;
     }
@@ -198,7 +198,7 @@ function confirmarDenegar() {
             document.getElementById('acciones-' + pedidoDenegarId).remove();
             cerrarDenegar();
         } else {
-            errorEl.textContent = datos.error || 'Ha habido un error';
+            errorEl.textContent = datos.error || <?= json_encode($t['admin_error_generico']) ?>;
             errorEl.hidden = false;
         }
     });
@@ -206,10 +206,10 @@ function confirmarDenegar() {
 
 // texto que se muestra en el badge segun el estado
 const textoEstado = {
-    en_preparacion: 'En preparacion',
-    listo_recogida: 'Listo para recoger',
-    entregado: 'Entregado',
-    denegado: 'No procesado'
+    en_preparacion: <?= json_encode($t['estado_en_preparacion']) ?>,
+    listo_recogida: <?= json_encode($t['estado_listo_recogida']) ?>,
+    entregado: <?= json_encode($t['estado_entregado']) ?>,
+    denegado: <?= json_encode($t['estado_denegado']) ?>
 };
 
 function actualizarBadge(id, estado) {
