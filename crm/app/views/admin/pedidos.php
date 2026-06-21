@@ -34,7 +34,7 @@ require __DIR__ . '/../layout/header.php';
         <div class="pedido-card" id="pedido-<?= $pedido['id'] ?>">
             <div class="pedido-header">
                 <div>
-                    <span class="pedido-num">Pedido #<?= $pedido['id'] ?></span>
+                    <span class="pedido-num"><?= $t['pedidos_num'] ?><?= $pedido['id'] ?></span>
                     <span class="pedido-fecha"><?= date('d/m/Y H:i', strtotime($pedido['created_at'])) ?></span>
                     <span class="pedido-cliente">
                         <?= htmlspecialchars($pedido['cliente_nombre']) ?>

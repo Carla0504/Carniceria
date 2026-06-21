@@ -57,14 +57,11 @@ require __DIR__ . '/../layout/header.php';
 
 <div class="admin-stock-lote">
     <div class="admin-lote-header">
-        <h1>Recarga de stock en lote</h1>
-        <a href="/Carniceria/crm/app/views/admin/mensajes.php" class="btn btn-secondary">← Mensajes</a>
+        <h1><?= $t['admin_stock_h1'] ?></h1>
+        <a href="/Carniceria/crm/app/views/admin/mensajes.php" class="btn btn-secondary">← <?= $t['nav_admin_mensajes'] ?></a>
     </div>
 
-    <p class="admin-lote-desc">
-        Marca los productos que quieres reponer y ajusta la cantidad a <strong>añadir</strong> al stock actual.
-        Las cantidades predefinidas corresponden a una recarga estándar de temporada.
-    </p>
+    <p class="admin-lote-desc"><?= $t['admin_stock_desc'] ?></p>
 
     <div id="lote-feedback" class="lote-feedback" hidden></div>
 
@@ -81,10 +78,10 @@ require __DIR__ . '/../layout/header.php';
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Producto</th>
-                        <th>Stock actual</th>
-                        <th>Añadir</th>
-                        <th>Unidad</th>
+                        <th><?= $t['admin_stock_col_producto'] ?></th>
+                        <th><?= $t['admin_stock_col_stock_actual'] ?></th>
+                        <th><?= $t['admin_stock_col_anadir'] ?></th>
+                        <th><?= $t['admin_stock_col_unidad'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,14 +115,22 @@ require __DIR__ . '/../layout/header.php';
 
         <div class="lote-actions">
             <button type="button" id="btn-recargar" class="btn-admin-add" disabled>
-                Recargar seleccionados
+                <?= $t['admin_stock_btn_recargar'] ?>
             </button>
-            <span class="lote-seleccionados">0 productos seleccionados</span>
+            <span class="lote-seleccionados"><?= sprintf($t['admin_stock_sel_plural'], 0) ?></span>
         </div>
     </form>
 </div>
 
 <script>
+const _tSel1 = <?= json_encode($t['admin_stock_sel_singular']) ?>;
+const _tSelN = <?= json_encode($t['admin_stock_sel_plural']) ?>;
+const _tOk1 = <?= json_encode($t['admin_stock_ok_singular']) ?>;
+const _tOkN = <?= json_encode($t['admin_stock_ok_plural']) ?>;
+const _tRecargando = <?= json_encode($t['admin_stock_recargando']) ?>;
+const _tError = <?= json_encode($t['admin_stock_error']) ?>;
+const _tBtnRecargar = <?= json_encode($t['admin_stock_btn_recargar']) ?>;
+
 const checkboxes = document.querySelectorAll('.check-producto');
 const btnRecargar = document.getElementById('btn-recargar');
 const labelSel = document.querySelector('.lote-seleccionados');
@@ -134,7 +139,7 @@ const feedback = document.getElementById('lote-feedback');
 function actualizarBoton() {
     const n = document.querySelectorAll('.check-producto:checked').length;
     btnRecargar.disabled = n === 0;
-    labelSel.textContent = n + ' producto' + (n !== 1 ? 's' : '') + ' seleccionado' + (n !== 1 ? 's' : '');
+    labelSel.textContent = (n === 1 ? _tSel1 : _tSelN).replace('%d', n);
 }
 
 document.querySelectorAll('.check-seccion').forEach(chk => {
@@ -157,7 +162,7 @@ btnRecargar.addEventListener('click', () => {
     if (items.length === 0) return;
 
     btnRecargar.disabled = true;
-    btnRecargar.textContent = 'Recargando…';
+    btnRecargar.textContent = _tRecargando;
 
     const fd = new FormData();
     fd.append('_action', 'recargar_lote');
@@ -169,8 +174,7 @@ btnRecargar.addEventListener('click', () => {
             if (data.ok) {
                 feedback.hidden = false;
                 feedback.className = 'lote-feedback lote-ok';
-                feedback.textContent = data.actualizados + ' producto' + (data.actualizados !== 1 ? 's' : '')
-                    + ' recargado' + (data.actualizados !== 1 ? 's' : '') + ' correctamente.';
+                feedback.textContent = (data.actualizados === 1 ? _tOk1 : _tOkN).replace('%d', data.actualizados);
                 // actualizar stocks visibles sin recargar la página
                 data.nuevos_stocks.forEach(item => {
                     const td = document.getElementById('stock-' + item.id);
@@ -178,7 +182,7 @@ btnRecargar.addEventListener('click', () => {
                 });
                 // desmarcar todos
                 document.querySelectorAll('.check-producto, .check-seccion').forEach(c => c.checked = false);
-                btnRecargar.textContent = 'Recargar seleccionados';
+                btnRecargar.textContent = _tBtnRecargar;
                 actualizarBoton();
             } else {
                 throw new Error(data.error || 'Error desconocido');
@@ -187,9 +191,9 @@ btnRecargar.addEventListener('click', () => {
         .catch(err => {
             feedback.hidden = false;
             feedback.className = 'lote-feedback lote-error';
-            feedback.textContent = 'Error: ' + err.message;
+            feedback.textContent = _tError + err.message;
             btnRecargar.disabled = false;
-            btnRecargar.textContent = 'Recargar seleccionados';
+            btnRecargar.textContent = _tBtnRecargar;
         });
 });
 </script>

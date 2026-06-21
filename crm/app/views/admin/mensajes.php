@@ -26,18 +26,18 @@ require __DIR__ . '/../layout/header.php';
 <link rel="stylesheet" href="/Carniceria/crm/public/css/admin.css">
 
 <div class="admin-mensajes">
-    <h1>Mensajes de contacto</h1>
+    <h1><?= $t['admin_mensajes_h1'] ?></h1>
 
     <?php if (empty($mensajes)): ?>
-        <p class="mensajes-vacio">No hay mensajes todavía.</p>
+        <p class="mensajes-vacio"><?= $t['admin_mensajes_vacio'] ?></p>
     <?php else: ?>
         <table class="mensajes-tabla">
             <thead>
                 <tr>
-                    <th>Fecha</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Mensaje</th>
+                    <th><?= $t['admin_mensajes_col_fecha'] ?></th>
+                    <th><?= $t['admin_mensajes_col_nombre'] ?></th>
+                    <th><?= $t['admin_mensajes_col_correo'] ?></th>
+                    <th><?= $t['admin_mensajes_col_mensaje'] ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -52,10 +52,10 @@ require __DIR__ . '/../layout/header.php';
                         <?php if (!$m['leido']): ?>
                         <form method="POST">
                             <input type="hidden" name="marcar_leido" value="<?= $m['id'] ?>">
-                            <button type="submit" class="btn btn-secondary">Marcar leído</button>
+                            <button type="submit" class="btn btn-secondary"><?= $t['admin_mensajes_marcar_leido'] ?></button>
                         </form>
                         <?php else: ?>
-                        <span class="leido-tag">Leído</span>
+                        <span class="leido-tag"><?= $t['admin_mensajes_leido'] ?></span>
                         <?php endif; ?>
                     </td>
                 </tr>
