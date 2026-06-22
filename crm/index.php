@@ -43,7 +43,7 @@ $imagenesCarrusel = glob(__DIR__ . '/public/img/carrusel/*.{jpg,jpeg,png,webp}',
       <p><?= $t['card_charcuteria_desc'] ?></p>
       <span class="seccion-link"><?= $t['ver_productos'] ?></span>
     </a>
-    <a href="/Carniceria/crm/app/views/catalogo/polleria.php" class="seccion-card">
+    <a href="/Carniceria/crm/app/views/catalogo/quesos.php" class="seccion-card">
       <div class="seccion-icon">🧀</div>
       <h3><?= $t['nav_quesos'] ?></h3>
       <p><?= $t['card_quesos_desc'] ?></p>

@@ -37,7 +37,7 @@ $t = require __DIR__ . '/../../../lang/' . $idioma . '.php';
     </li>
     <li><a href="/Carniceria/crm/app/views/catalogo/carniceria.php"><?= $t['nav_carniceria'] ?></a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/charcuteria.php"><?= $t['nav_charcuteria'] ?></a></li>
-    <li><a href="/Carniceria/crm/app/views/catalogo/polleria.php"><?= $t['nav_quesos'] ?></a></li>
+    <li><a href="/Carniceria/crm/app/views/catalogo/quesos.php"><?= $t['nav_quesos'] ?></a></li>
     <li><a href="/Carniceria/crm/app/views/catalogo/conservas.php"><?= $t['nav_conservas'] ?></a></li>
     <li><a href="/Carniceria/crm/app/views/galeria/index.php"><?= $t['nav_imagenes'] ?></a></li>
     <li><a href="/Carniceria/crm/app/views/contacto/index.php"><?= $t['nav_contacto'] ?></a></li>

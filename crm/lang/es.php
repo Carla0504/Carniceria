@@ -219,7 +219,7 @@ return [
     'admin_form_seccion' => 'Sección',
     'admin_form_sec_carniceria' => 'Carnicería',
     'admin_form_sec_charcuteria' => 'Charcutería',
-    'admin_form_sec_polleria' => 'Pollería',
+    'admin_form_sec_polleria' => 'Quesos',
     'admin_form_sec_conservas' => 'Conservas',
     'admin_form_nombre' => 'Nombre',
     'admin_form_descripcion' => 'Descripción',

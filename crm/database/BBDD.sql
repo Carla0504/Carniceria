@@ -34,7 +34,7 @@ CREATE TABLE secciones (
 INSERT INTO secciones (nombre, slug, descripcion, descripcion_en, orden) VALUES
 ('Carnicería', 'carniceria', 'Sin conservantes ni potenciadores de sabor. Picamos la carne en el momento que nos lo pidan.', 'No preservatives or flavour enhancers. We mince the meat on request.', 1),
 ('Charcutería y Jamones', 'charcuteria', 'Las mejores marcas españolas e italianas en embutidos artesanales y jamones de calidad.', 'The best Spanish and Italian brands in artisan cured meats and quality hams.', 2),
-('Quesos y Especialidades', 'polleria', 'Quesos premiados internacionalmente, cecina de León y especialidades únicas.', 'Internationally awarded cheeses, León cured beef and unique specialities.', 3),
+('Quesos y Especialidades', 'quesos', 'Quesos premiados internacionalmente, cecina de León y especialidades únicas.', 'Internationally awarded cheeses, León cured beef and unique specialities.', 3),
 ('Conservas y Bacalao', 'conservas', 'Gadus Morhua de las Islas Faroe, conservas, legumbres, vinos, picos y regañas.', 'Gadus Morhua from the Faroe Islands, preserves, legumes, wines and traditional snacks.', 4);
 
 CREATE TABLE productos (
